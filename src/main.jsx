@@ -10,10 +10,16 @@ class Hello extends React.Component {
 		}
   }
 
+  myFunFn() {
+    return ("all of the returns");
+  }
+
   render() {
       return (
       	<div>
       		<h1>Hi everyone now</h1>
+          <p>{this.myFunFn()}</p>
+          <p>{this.state.num}</p>
       	</div>
     )
   };
