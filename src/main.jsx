@@ -35,7 +35,7 @@ class Hello extends React.Component {
   	render() {
       	return (
       		<div>
-      			<h1>Hi everyone now</h1>
+      			<h1>Displaying Matrix</h1>
           	<p>{this.myFunFn()}</p>
           	<p>{this.state.num}</p>
             {this.divFun()}
