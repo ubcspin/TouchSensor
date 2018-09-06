@@ -10,19 +10,38 @@ class Hello extends React.Component {
 		}
   }
 
-  myFunFn() {
-    return ("all of the returns");
+  	myFunFn() {
+    	return ("all of the returns");
+  	}
+
+  renderDiv(n) {
+    return (<p>{n}</p>)
   }
 
-  render() {
-      return (
-      	<div>
-      		<h1>Hi everyone now</h1>
-          <p>{this.myFunFn()}</p>
-          <p>{this.state.num}</p>
-      	</div>
-    )
-  };
+  divFun() {
+    var arr = [];
+    for (var i = 0; i < 100; i++) {
+      arr.push(i);
+    }
+    return (
+      <div id="hi">
+        {
+            arr.map((n, i, e) => {return this.renderDiv(i)})
+        }
+      </div>
+      )
+  }
+
+  	render() {
+      	return (
+      		<div>
+      			<h1>Hi everyone now</h1>
+          	<p>{this.myFunFn()}</p>
+          	<p>{this.state.num}</p>
+            {this.divFun()}
+      		</div>
+    	)
+  	};
 }
 
 
