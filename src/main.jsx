@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class App extends React.Component {
+class Page extends React.Component {
   constructor(props) {
 		super(props);
 		this.setState({});
@@ -44,6 +44,6 @@ class App extends React.Component {
   	};
 }
 
+const app = document.getElementById('app');
 
-
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<Page/>, document.getElementById('app'));
