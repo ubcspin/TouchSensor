@@ -1,6 +1,7 @@
 import React from 'react';
+import Page from './Layout/Page.jsx';
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
 		super(props);
 		this.setState({});
@@ -33,8 +34,9 @@ export default class App extends React.Component {
 
   	render() {
       	return (
-      		<div>
+      		<div className="App">
       			<h1>Displaying Matrix</h1>
+            <Page />
           	<p>{this.myFunFn()}</p>
           	<p>{this.state.num}</p>
             {this.divFun()}
@@ -42,3 +44,5 @@ export default class App extends React.Component {
     	)
   	};
 }
+
+export default App;

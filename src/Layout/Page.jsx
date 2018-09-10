@@ -1,7 +1,7 @@
 import React from 'react';
 
 const page = () => {
-    <p>I'm a temporary Page</p>
+    return <p>I'm a temporary Page</p>
     
 };
 
