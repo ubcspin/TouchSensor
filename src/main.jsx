@@ -7,6 +7,6 @@ import Page from './Layout/Page.jsx';
 import Matrix from './Matrix/Matrix.jsx'
 
 
-const app = document.getElementById('app');
+//const app = document.getElementById('app');
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
