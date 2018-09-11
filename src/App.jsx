@@ -9,6 +9,7 @@ class App extends Component {
       matrixElements: [{ size: 100 }]
     }
   }
+  //Will use matrixElements to change the state of the matrix elements
 
   renderDiv(n) {
     return (<p>{n}</p>)
@@ -28,12 +29,20 @@ class App extends Component {
       )
   }
 
+  switchSensorHandler = () => {
+    console.log('Was clicked!');
+    //this.setState({})
+  }
+  
+  // Will use set state to change the matrix elements
+  
+
   	render() {
       	return (
       		<div className="App">
             <Page />
             <Matrix size={this.state.matrixElements[0].size} />
-          	
+          	<button onClick={this.switchSensorHandler}>Switch Sensor</button>
           	
             {this.divFun()}
       		</div>
