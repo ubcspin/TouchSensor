@@ -1,7 +1,7 @@
 import React from 'react';
 
 const matrix = () => {
-		<p>I'm a temporary matrix</p>
+	return <p>I'm a temporary matrix</p>
 		
 };
 

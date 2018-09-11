@@ -1,5 +1,6 @@
 import React from 'react';
 import Page from './Layout/Page.jsx';
+import Matrix from './Matrix/Matrix.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,8 +36,8 @@ class App extends React.Component {
   	render() {
       	return (
       		<div className="App">
-      			<h1>Displaying Matrix</h1>
             <Page />
+            <Matrix />
           	<p>{this.myFunFn()}</p>
           	<p>{this.state.num}</p>
             {this.divFun()}
