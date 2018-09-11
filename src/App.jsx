@@ -1,19 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Page from './Layout/Page.jsx';
 import Matrix from './Matrix/Matrix.jsx';
 
-class App extends React.Component {
-  constructor(props) {
-		super(props);
-		this.setState({});
-		this.state = {
-			num: 5,
-		}
+class App extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      matrixElements: [{ size: 100 }]
+    }
   }
-
-  	myFunFn() {
-    	return ("all of the returns");
-  	}
 
   renderDiv(n) {
     return (<p>{n}</p>)
@@ -37,9 +32,9 @@ class App extends React.Component {
       	return (
       		<div className="App">
             <Page />
-            <Matrix />
-          	<p>{this.myFunFn()}</p>
-          	<p>{this.state.num}</p>
+            <Matrix size={this.state.matrixElements[0].size} />
+          	
+          	
             {this.divFun()}
       		</div>
     	)

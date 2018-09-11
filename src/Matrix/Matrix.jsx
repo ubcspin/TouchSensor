@@ -1,8 +1,11 @@
 import React from 'react';
 
-const matrix = () => {
-	return <p>I'm a temporary matrix</p>
-		
+const matrix = (props) => {
+	return (
+		<div>
+			<p>I'm a {props.size} square matrix</p>
+		</div>
+	)	
 };
 
 export default matrix;
