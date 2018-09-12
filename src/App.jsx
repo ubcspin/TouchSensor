@@ -40,6 +40,13 @@ class App extends Component {
   
   // Will use set state to change the matrix elements
   
+  sensorSizeHandler = (event) => {
+    this.setState( {
+      matrixElements: [
+        { size: event.target .value }
+      ]
+    } )
+  }
 
   	render() {
       	return (
@@ -50,7 +57,8 @@ class App extends Component {
               size={this.state.matrixElements[0].size} />
             <Matrix 
               size={this.state.matrixElements[0].size} 
-              click={this.switchSensorHandler.bind(this, '400')} />
+              click={this.switchSensorHandler.bind(this, '400')}
+              changed={this.sensorSizeHandler} />
           	
           	
             {this.divFun()}
