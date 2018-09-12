@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Page from './Layout/Page.jsx';
 import Matrix from './Matrix/Matrix.jsx';
 
@@ -29,11 +29,11 @@ class App extends Component {
       )
   }
 
-  switchSensorHandler = () => {
+  switchSensorHandler = (newSize) => {
     //console.log('Was clicked!');
     this.setState( {
       matrixElements: [
-      {size: 200}
+      { size: newSize }
       ]
     } )
   }
@@ -45,8 +45,13 @@ class App extends Component {
       	return (
       		<div className="App">
             <Page />
-            <Matrix size={this.state.matrixElements[0].size} />
-          	<button onClick={this.switchSensorHandler}>Switch Sensor</button>
+            <button onClick={this.switchSensorHandler.bind(this, '300')}>Switch Sensor</button>
+            <Matrix 
+              size={this.state.matrixElements[0].size} />
+            <Matrix 
+              size={this.state.matrixElements[0].size} 
+              click={this.switchSensorHandler.bind(this, '400')} />
+          	
           	
             {this.divFun()}
       		</div>
