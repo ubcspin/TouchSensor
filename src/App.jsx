@@ -3,11 +3,11 @@ import Page from './Layout/Page.jsx';
 import Matrix from './Matrix/Matrix.jsx';
 
 class App extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      matrixElements: [{ size: 100 }]
-    }
+  state = {
+    matrixElements: [
+    {size: 100}
+    ],
+    otherState: 'another value'
   }
   //Will use matrixElements to change the state of the matrix elements
 
@@ -30,8 +30,12 @@ class App extends Component {
   }
 
   switchSensorHandler = () => {
-    console.log('Was clicked!');
-    //this.setState({})
+    //console.log('Was clicked!');
+    this.setState( {
+      matrixElements: [
+      {size: 200}
+      ]
+    } )
   }
   
   // Will use set state to change the matrix elements
