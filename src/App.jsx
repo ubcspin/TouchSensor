@@ -49,10 +49,19 @@ class App extends Component {
   }
 
   	render() {
+      const style = {
+        backgroundColor: 'white',
+        font: 'inherit',
+        border: '1px solid blue',
+        padding: '8px',
+        cursor: 'pointer'
+      };
       	return (
       		<div className="App">
             <Page />
-            <button onClick={this.switchSensorHandler.bind(this, '300')}>Switch Sensor</button>
+            <button 
+              style={style}
+              onClick={this.switchSensorHandler.bind(this, '300')}>Switch Sensor</button>
             <Matrix 
               size={this.state.matrixElements[0].size} />
             <Matrix 
@@ -63,6 +72,7 @@ class App extends Component {
           	
             {this.divFun()}
       		</div>
+      
     	)
   	};
 }
