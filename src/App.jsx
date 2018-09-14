@@ -61,27 +61,33 @@ class App extends Component {
         padding: '8px',
         cursor: 'pointer'
       };
-      	return (
-      		<div className="App">
-            <Page />
-            <button 
-              style={style}
-              onClick={this.toggleMatrixHandler.bind(this, '300')}>Switch Sensor</button>
-            { this.state.showMatrix ?
-              <div>
+
+      let matrixes = null;
+
+      if (this.state.showMatrix) {
+        matrixes = (
+            <div>
               <Matrix 
                 size={this.state.matrixElements[0].size} />
               <Matrix 
                 size={this.state.matrixElements[0].size} 
                 click={this.switchSensorHandler.bind(this, '400')}
                changed={this.sensorSizeHandler} />
-              </div> : null
-            }
+              </div> 
+          );
+      }
+
+      	return (
+      		<div className="App">
+            <Page />
+            <button 
+              style={style}
+              onClick={this.toggleMatrixHandler.bind(this, '300')}>Switch Sensor</button>
+              {matrixes}
             
-          	
-          	
             {this.divFun()}
       		</div>
+      
       
     	)
   	};
