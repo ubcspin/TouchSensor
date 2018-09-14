@@ -7,7 +7,8 @@ class App extends Component {
     matrixElements: [
     {size: 100}
     ],
-    otherState: 'another value'
+    otherState: 'another value',
+    showMatrix: false
   }
   //Will use matrixElements to change the state of the matrix elements
 
@@ -48,6 +49,10 @@ class App extends Component {
     } )
   }
 
+  toggleMatrixHandler = () => {
+    const doesShow = this.state.showMatrix;
+    this.setState({showMatrix: !doesShow});
+  }
   	render() {
       const style = {
         backgroundColor: 'white',
@@ -61,13 +66,18 @@ class App extends Component {
             <Page />
             <button 
               style={style}
-              onClick={this.switchSensorHandler.bind(this, '300')}>Switch Sensor</button>
-            <Matrix 
-              size={this.state.matrixElements[0].size} />
-            <Matrix 
-              size={this.state.matrixElements[0].size} 
-              click={this.switchSensorHandler.bind(this, '400')}
-              changed={this.sensorSizeHandler} />
+              onClick={this.toggleMatrixHandler.bind(this, '300')}>Switch Sensor</button>
+            { this.state.showMatrix ?
+              <div>
+              <Matrix 
+                size={this.state.matrixElements[0].size} />
+              <Matrix 
+                size={this.state.matrixElements[0].size} 
+                click={this.switchSensorHandler.bind(this, '400')}
+               changed={this.sensorSizeHandler} />
+              </div> : null
+            }
+            
           	
           	
             {this.divFun()}
