@@ -4,15 +4,16 @@ import Matrix from './Matrix/Matrix.jsx';
 
 class App extends Component {
   state = {
-    matrixElements: [
-    {size: 100}
+    matrixes: [
+    {id: 'abcdef', size: 100},
+    {id: 'abcdeg', size: 200}
     ],
     otherState: 'another value',
     showMatrix: false
   }
   //Will use matrixElements to change the state of the matrix elements
 
-  renderDiv(n) {
+  /*renderDiv(n) {
     return (<p>{n}</p>)
   }
 
@@ -28,25 +29,22 @@ class App extends Component {
         }
       </div>
       )
-  }
-
-  switchSensorHandler = (newSize) => {
-    //console.log('Was clicked!');
-    this.setState( {
-      matrixElements: [
-      { size: newSize }
-      ]
-    } )
-  }
+  }*/
   
   // Will use set state to change the matrix elements
   
   sensorSizeHandler = (event) => {
     this.setState( {
-      matrixElements: [
+      matrixes: [
         { size: event.target .value }
       ]
     } )
+  }
+
+  deleteMatrixHandler = (matrixIndex) => {
+    const matrixes = this.state.matrixes.slice();
+    matrixes.splice(matrixIndex, 1);
+    this.setState({matrixes, matrixes})
   }
 
   toggleMatrixHandler = () => {
@@ -64,17 +62,20 @@ class App extends Component {
 
       let matrixes = null;
 
-      if (this.state.showMatrix) {
+      if ( this.state.showMatrix ) {
+        
         matrixes = (
-            <div>
-              <Matrix 
-                size={this.state.matrixElements[0].size} />
-              <Matrix 
-                size={this.state.matrixElements[0].size} 
-                click={this.switchSensorHandler.bind(this, '400')}
-               changed={this.sensorSizeHandler} />
-              </div> 
-          );
+          <div>
+            {this.state.matrixes.map((matrix, index) => {
+             return <Matrix 
+             click={() => this.deleteMatrixHandler(index)}
+             size={matrix.size}
+             key={matrix.id} />
+            })}
+      
+         </div> 
+        
+        );
       }
 
       	return (
@@ -84,13 +85,11 @@ class App extends Component {
               style={style}
               onClick={this.toggleMatrixHandler.bind(this, '300')}>Switch Sensor</button>
               {matrixes}
-            
-            {this.divFun()}
+
       		</div>
-      
-      
     	)
   	};
 }
+//{this.divFun()}
 
 export default App;
