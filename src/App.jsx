@@ -33,12 +33,21 @@ class App extends Component {
   
   // Will use set state to change the matrix elements
   
-  sensorSizeHandler = (event) => {
-    this.setState( {
-      matrixes: [
-        { size: event.target .value }
-      ]
-    } )
+  sensorSizeHandler = ( event, id ) => {
+    const matrixIndex = this.state.matrixes.find(m => {
+      return m.id === id;
+    });
+
+    const matrix = {
+      ...this.state.matrixes[matrixIndex]
+    };
+
+    matrix.size = event.target.value;
+
+    const matrixes = [...this.state.matrixes];
+    matrixes[matrixIndex] = matrix;
+    
+    this.setState( {matrixes: matrixes} )
   }
 
   deleteMatrixHandler = (matrixIndex) => {
@@ -70,7 +79,8 @@ class App extends Component {
              return <Matrix 
              click={() => this.deleteMatrixHandler(index)}
              size={matrix.size}
-             key={matrix.id} />
+             key={matrix.id}
+             changed={(event) => this.sensorSizeHandler(event, matrix.id)} />
             })}
       
          </div> 
