@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Page from './Layout/Page.jsx';
-import Matrix from './Matrix/Matrix.jsx';
+import Page from './Components/Layout/Page.jsx';
+import Matrix from './Components/Matrixes/Matrix/Matrix.jsx';
 import './App.css';
 
 class App extends Component {
