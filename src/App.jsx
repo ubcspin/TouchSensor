@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Page from './Layout/Page.jsx';
 import Matrix from './Matrix/Matrix.jsx';
+import './App.css';
 
 class App extends Component {
   state = {
@@ -62,7 +63,8 @@ class App extends Component {
   }
   	render() {
       const style = {
-        backgroundColor: 'white',
+        backgroundColor: 'blue',
+        color: 'white',
         font: 'inherit',
         border: '1px solid blue',
         padding: '8px',
@@ -84,13 +86,23 @@ class App extends Component {
             })}
       
          </div> 
-        
         );
+        style.backgroundColor = 'red';
+      }
+      
+      const classes = [];
+      if (this.state.matrixes.length <= 2) {
+        classes.push('red');
+      }
+      if (this.state.matrixes.length <= 1) {
+        classes.push('bold');
       }
 
       	return (
       		<div className="App">
+
             <Page />
+            <p className={classes.join(' ')}>This is a test</p>
             <button 
               style={style}
               onClick={this.toggleMatrixHandler.bind(this, '300')}>Switch Sensor</button>
