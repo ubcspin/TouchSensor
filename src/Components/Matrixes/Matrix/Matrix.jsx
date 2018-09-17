@@ -4,8 +4,8 @@ import './Matrix.css';
 const matrix = (props) => {
 	return (
 		<div className="Matrix">
-			<p onClick={props.click}>I'm a {props.size} square matrix</p>
-			<input type="text" onChange={props.changed} value={props.size} />
+			<p onClick={props.click}>{props.sensor}</p>
+			<input type="button" onChange={props.changed} value={props.sensor} />
 		</div>
 	)	
 };
