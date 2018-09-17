@@ -6,8 +6,8 @@ import './App.css';
 class App extends Component {
   state = {
     matrixes: [
-    {id: 'abcdef', sensor: 1},
-    {id: 'abcdeg', sensor: 1}
+    {id: 'abcdef', sensor: 0},
+    {id: 'abcdeg', sensor: 0}
     ],
     otherState: 'another value',
     showMatrix: false
@@ -51,10 +51,10 @@ class App extends Component {
     this.setState( {matrixes: matrixes} )
   }
 
-  deleteMatrixHandler = (matrixIndex) => {
-    const matrixes = this.state.matrixes.slice();
-    matrixes.splice(matrixIndex, 1);
-    this.setState({matrixes, matrixes})
+  pressMatrixHandler = (matrixIndex) => {
+    const matrixes = this.state.matrixes;
+    matrixes[1].sensor = 1;
+    this.setState( {matrixes: matrixes} )
   }
 
   toggleMatrixHandler = () => {
@@ -78,7 +78,7 @@ class App extends Component {
           <div>
           <Matrixes 
             matrixes={this.state.matrixes}
-            clicked={this.deleteMatrixHandler}
+            clicked={this.pressMatrixHandler}
             changed={this.toggleMatrixHandler} />
          </div> 
         );
