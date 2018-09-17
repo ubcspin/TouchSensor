@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Page from './Components/Layout/Page.jsx';
-import Matrix from './Components/Matrixes/Matrix/Matrix.jsx';
+import Page from './components/Layout/Page.jsx';
+import Matrixes from './components/Matrixes/Matrixes.jsx';
 import './App.css';
 
 class App extends Component {
@@ -74,19 +74,15 @@ class App extends Component {
       let matrixes = null;
 
       if ( this.state.showMatrix ) {
-        
         matrixes = (
           <div>
-            {this.state.matrixes.map((matrix, index) => {
-             return <Matrix 
-             click={() => this.deleteMatrixHandler(index)}
-             size={matrix.size}
-             key={matrix.id}
-             changed={(event) => this.sensorSizeHandler(event, matrix.id)} />
-            })}
-      
+          <Matrixes 
+            matrixes={this.state.matrixes}
+            clicked={this.deleteMatrixHandler}
+            changed={this.toggleMatrixHandler} />
          </div> 
         );
+
         style.backgroundColor = 'red';
       }
       
