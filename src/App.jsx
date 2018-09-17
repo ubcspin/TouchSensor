@@ -101,7 +101,7 @@ class App extends Component {
             <p className={classes.join(' ')}>This is a test</p>
             <button 
               style={style}
-              onClick={this.toggleMatrixHandler.bind(this, '300')}>Switch Sensor</button>
+              onClick={this.toggleMatrixHandler.bind(this, '300')}>Display Matrix</button>
               {matrixes}
 
       		</div>
