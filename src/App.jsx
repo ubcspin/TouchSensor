@@ -6,8 +6,8 @@ import './App.css';
 class App extends Component {
   state = {
     matrixes: [
-    {id: 'abcdef', sensor: 0},
-    {id: 'abcdeg', sensor: 0}
+    {id: 'abcdef', sensor: 'Matrix0'},
+    {id: 'abcdeg', sensor: 'Matrix0'}
     ],
     otherState: 'another value',
     showMatrix: false
@@ -53,7 +53,7 @@ class App extends Component {
 
   pressMatrixHandler = (matrixIndex) => {
     const matrixes = this.state.matrixes;
-    matrixes[1].sensor = 1;
+    matrixes[1].sensor = 'Matrix1';
     this.setState( {matrixes: matrixes} )
   }
 

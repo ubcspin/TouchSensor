@@ -1,6 +1,13 @@
-.Matrix {
+.Matrix0 {
 	height: 50px;
 	width: 50px;
 	background-color: LightGrey;
+	border-style: solid;
+}
+
+.Matrix1 {
+	height: 50px;
+	width: 50px;
+	background-color: Red;
 	border-style: solid;
 }
