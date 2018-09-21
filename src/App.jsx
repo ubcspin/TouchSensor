@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Page from './components/Layout/Page.jsx';
-import Matrixes from './components/Matrixes/Matrixes.jsx';
+import Matrix from './components/Matrix/Matrix.jsx';
 import './App.css';
 
 class App extends Component {
   state = {
-    matrixes: [
-    {id: 'abcdef', sensor: 'Matrix0'},
-    {id: 'abcdeg', sensor: 'Matrix0'}
+    cells: [
+    {id: 'abcdef', sensor: 'Cell0'},
+    {id: 'abcdeg', sensor: 'Cell1'}
     ],
     otherState: 'another value',
     showMatrix: false
@@ -35,29 +35,29 @@ class App extends Component {
   // Will use set state to change the matrix elements
   
   sensorSizeHandler = ( event, id ) => {
-    const matrixIndex = this.state.matrixes.find(m => {
+    const cellIndex = this.state.cells.find(m => {
       return m.id === id;
     });
 
-    const matrix = {
-      ...this.state.matrixes[matrixIndex]
+    const cell = {
+      ...this.state.cells[cellIndex]
     };
 
-    matrix.sensor = event.target.value;
+    cell.sensor = event.target.value;
 
-    const matrixes = [...this.state.matrixes];
-    matrixes[matrixIndex] = matrix;
+    const cells = [...this.state.cells];
+    cells[cellIndex] = cell;
     
-    this.setState( {matrixes: matrixes} )
+    this.setState( {cells: cells} )
   }
 
-  pressMatrixHandler = (matrixIndex) => {
-    const matrixes = this.state.matrixes;
-    matrixes[1].sensor = 'Matrix1';
-    this.setState( {matrixes: matrixes} )
+  pressCellHandler = (cellIndex) => {
+    const cells = this.state.cells;
+    cells[1].sensor = 'Cell1';
+    this.setState( {cells: cells} )
   }
 
-  toggleMatrixHandler = () => {
+  toggleCellHandler = () => {
     const doesShow = this.state.showMatrix;
     this.setState({showMatrix: !doesShow});
   }
@@ -71,15 +71,15 @@ class App extends Component {
         cursor: 'pointer'
       };
 
-      let matrixes = null;
+      let matrix = null;
 
       if ( this.state.showMatrix ) {
-        matrixes = (
+        matrix = (
           <div>
-          <Matrixes 
-            matrixes={this.state.matrixes}
-            clicked={this.pressMatrixHandler}
-            changed={this.toggleMatrixHandler} />
+          <Matrix 
+            matrix={this.state.cells}
+            clicked={this.pressCellHandler}
+            changed={this.toggleCellHandler} />
          </div> 
         );
 
@@ -87,10 +87,10 @@ class App extends Component {
       }
       
       const classes = [];
-      if (this.state.matrixes.length <= 2) {
+      if (this.state.cells.length <= 2) {
         classes.push('red');
       }
-      if (this.state.matrixes.length <= 1) {
+      if (this.state.cells.length <= 1) {
         classes.push('bold');
       }
 
@@ -101,9 +101,8 @@ class App extends Component {
             <p className={classes.join(' ')}>This is a test</p>
             <button 
               style={style}
-              onClick={this.toggleMatrixHandler.bind(this, '300')}>Display Matrix</button>
-              {matrixes}
-
+              onClick={this.toggleCellHandler.bind(this, '300')}>Display Matrix</button>
+              {matrix}
       		</div>
     	)
   	};
