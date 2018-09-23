@@ -1,24 +1,24 @@
-import React from 'react';
-import './Matrix.css';
+import React, { Component } from 'react';
+import './Cell.css';
 
-const cell = (props) => {
-	return (
-		<div className={props.sensor}>
-			<p onClick={props.click}></p>
-			<input type="button" onChange={props.changed} value={props.sensor} />
-		</div>
-	)	
-};
+class Cell extends Component {
 
-export default cell;
+	getColor = () => {
+		return "Cell0";
+	}
 
-/*
-return 
-div style={getColour()}
+	render() {
 
-fn getColour() {
-	return "background-color: red"
+		return(
+
+			<div className={this.getColor()}>
+
+			</div>
+			)
+	}
 }
 
-*/
+export default Cell;
+
+
 

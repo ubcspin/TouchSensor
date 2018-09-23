@@ -1,13 +1,15 @@
 .Cell0 {
-	height: 50px;
-	width: 50px;
+	height: 25px;
+	width: 25px;
 	background-color: LightGrey;
 	border-style: solid;
+	float: left;
 }
 
 .Cell1 {
-	height: 50px;
-	width: 50px;
+	height: 25px;
+	width: 25px;
 	background-color: Red;
 	border-style: solid;
+	float: left;
 }
