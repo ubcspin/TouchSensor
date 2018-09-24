@@ -6,7 +6,7 @@ class Matrix extends Component {
       state = {
       cells: [
       { id: 0, pressed: false },
-      { id: 1, pressed: false },
+      { id: 1, pressed: true },
       { id: 2, pressed: false },
       { id: 3, pressed: false },
       { id: 4, pressed: false },
@@ -18,7 +18,7 @@ class Matrix extends Component {
 
       { id: 10, pressed: false },
       { id: 11, pressed: false},
-      { id: 12, pressed: false },
+      { id: 12, pressed: true },
       { id: 13, pressed: false },
       { id: 14, pressed: false },
       { id: 15, pressed: false },
