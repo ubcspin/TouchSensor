@@ -3,6 +3,7 @@ import './Cell.css';
 
 class Cell extends Component {
 
+	//In the future, change the state of the pressed here
 	getColor = () => {
 		let colorName = false;
 		if (this.props.pressed === true) {
@@ -13,13 +14,22 @@ class Cell extends Component {
 		}
 		return colorName;
 	}
+	/*
+	createDivision = () => {
+		console.log(this.props.element);
+		let dividingElement = this.props.element;
+		console.log("divingElement is " + dividingElement);
+		if (dividingElement % 10 === 0) {
+			return "hi";
+		}
+	}*/
 
 	render() {
 		//console.log('props', this.props);
 		return(
 
 			<div className={this.getColor()}>
-
+			
 			</div>
 			)
 	}
