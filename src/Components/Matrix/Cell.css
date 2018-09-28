@@ -2,7 +2,7 @@
 	height: 25px;
 	width: 25px;
 	background-color: LightGrey;
-	border-style: solid;
+	border: 1px solid black;
 	float: left;
 }
 
@@ -10,6 +10,6 @@
 	height: 25px;
 	width: 25px;
 	background-color: Red;
-	border-style: solid;
+	border: 1px solid black;
 	float: left;
 }

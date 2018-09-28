@@ -114,109 +114,51 @@ class Matrix extends Component {
       { id: 96, element: 96, pressed: false },
       { id: 97, element: 97, pressed: false },
       { id: 98, element: 98, pressed: false },
-      { id: 99, element: 99, pressed: false },
+      { id: 99, element: 99, pressed: true },
     ]
   }
-  
-  makeRows = ( rowArray ) => {
-    /*let tempArray = [];
-    
-    tempArray.push(rowArray);
-    console.log(tempArray);
 
-    if (peanuts[i] == cell)
+  createDiv = ( temp ) => {
     
-    return tempArray;*/
-    let tempArray = [];
-    tempArray = rowArray.map((cell, i, peanuts) => 
-                <Cell key={cell.id} element={cell.element} pressed={cell.pressed} />)
-    console.log(tempArray);
-    return tempArray;
+    return (
+      <div className="Outter">
+        {temp}
+        
+      </div>
+      );
   }
 
   createDivision = () => {
+
+    // this.makeRow([this.state.cells[0], this.state.cells[1]]);
+
     let row_length = 10;
-    const num_rows = Math.ceil(this.state.cells.length / row_length);
-    //console.log(num_rows);
-    let cells = this.state.cells;
-    let rowArray = [];
-    let finishedArray = [];
-    for (var i = 0; i < num_rows; i++) {
-        rowArray = cells.slice(i*row_length, (i*row_length) + 10);
-        //console.log(rowArray);
-        finishedArray.push(this.makeRows(rowArray));
-        //this.makeRows(rowArray);
-        //console.log(finishedArray);
-    }
-    //console.log("the second call" + finishedArray);
-    return finishedArray;
+    var myCells = this.state.cells;
+    const num_rows = Math.ceil(myCells.length / row_length);
     
+    
+    let boardArray = [];
+    let finishedArray = [];
+    let temp = [];
+    for (var i = 0; i < num_rows; i++) {
+        var rowArray = myCells.slice(i * row_length, ((i*row_length) + row_length));
+        
+        temp = rowArray.map(function(cell, i, arr){ 
+          return (<Cell key={cell.id} element={cell.element} pressed={cell.pressed} />)
+        }.bind(this));
+        
+        boardArray = boardArray.concat(this.createDiv(temp));
+       
+      }
+      
+    return boardArray;
   }
 
     render() {
-      let temp = this.createDivision();
-      let temp1 = temp.slice(0,1);
-      let temp2 = temp.slice(1,2);
-      let temp3 = temp.slice(2,3);
-      let temp4 = temp.slice(3,4);
-      let temp5 = temp.slice(4,5);
-      let temp6 = temp.slice(5,6);
-      let temp7 = temp.slice(6,7);
-      let temp8 = temp.slice(7,8);
-      let temp9 = temp.slice(8,9);
-      let temp10 = temp.slice(9,10);
-      //console.log(temp);
-      return(
-         <div>
-            <div className="Row">
-              {temp1}
-            </div>
-            <br />
-            <br />
-            <div className="Row">
-              {temp2}
-            </div>
-            <br />
-            <br />
-            <div className="Row">
-              {temp3}
-            </div>
-            <br />
-            <br />
-            <div className="Row">
-              {temp4}
-            </div>
-            <br />
-            <br />
-            <div className="Row">
-              {temp5}
-            </div>
-            <br />
-            <br />
-            <div className="Row">
-              {temp6}
-            </div>
-            <br />
-            <br />
-            <div className="Row">
-              {temp7}
-            </div>
-            <br />
-            <br />
-            <div className="Row">
-              {temp8}
-            </div>
-            <br />
-            <br />
-            <div className="Row">
-              {temp9}
-            </div>
-            <br />
-            <br />
-            <div className="Row">
-              {temp10}
-            </div>
-
+      
+      return (
+         <div className="test">
+            {this.createDivision()}
           </div>
           )
       }
