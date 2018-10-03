@@ -6,8 +6,8 @@ class Matrix extends Component {
 
       state = {
       cells: [
-      { id: 0, element: 0, pressed: true },
-      { id: 1, element: 1, pressed: true },
+      { id: 0, element: 0, pressed: false },
+      { id: 1, element: 1, pressed: false },
       { id: 2, element: 2, pressed: false },
       { id: 3, element: 3, pressed: false },
       { id: 4, element: 4, pressed: false },
@@ -15,11 +15,11 @@ class Matrix extends Component {
       { id: 6, element: 6, pressed: false },
       { id: 7, element: 7, pressed: false },
       { id: 8, element: 8, pressed: false },
-      { id: 9, element: 9, pressed: true },
+      { id: 9, element: 9, pressed: false },
 
       { id: 10, element: 10, pressed: false },
       { id: 11, element: 11, pressed: false},
-      { id: 12, element: 12, pressed: true },
+      { id: 12, element: 12, pressed: false },
       { id: 13, element: 13, pressed: false },
       { id: 14, element: 14, pressed: false },
       { id: 15, element: 15, pressed: false },
@@ -30,8 +30,8 @@ class Matrix extends Component {
 
       { id: 20, element: 20, pressed: false },
       { id: 21, element: 21, pressed: false},
-      { id: 22, element: 22, pressed: true },
-      { id: 23, element: 23, pressed: true },
+      { id: 22, element: 22, pressed: false },
+      { id: 23, element: 23, pressed: false },
       { id: 24, element: 24, pressed: false },
       { id: 25, element: 25, pressed: false },
       { id: 26, element: 26, pressed: false },
@@ -41,7 +41,7 @@ class Matrix extends Component {
 
       { id: 30, element: 30, pressed: false },
       { id: 31, element: 31, pressed: false},
-      { id: 32, element: 32, pressed: true },
+      { id: 32, element: 32, pressed: false },
       { id: 33, element: 33, pressed: false },
       { id: 34, element: 34, pressed: false },
       { id: 35, element: 35, pressed: false },
@@ -52,7 +52,7 @@ class Matrix extends Component {
 
       { id: 40, element: 40, pressed: false },
       { id: 41, element: 41, pressed: false},
-      { id: 42, element: 42, pressed: true },
+      { id: 42, element: 42, pressed: false },
       { id: 43, element: 43, pressed: false },
       { id: 44, element: 44, pressed: false },
       { id: 45, element: 45, pressed: false },
@@ -63,7 +63,7 @@ class Matrix extends Component {
 
       { id: 50, element: 50, pressed: false },
       { id: 51, element: 51, pressed: false},
-      { id: 52, element: 52, pressed: true },
+      { id: 52, element: 52, pressed: false },
       { id: 53, element: 53, pressed: false },
       { id: 54, element: 54, pressed: false },
       { id: 55, element: 55, pressed: false },
@@ -74,7 +74,7 @@ class Matrix extends Component {
 
       { id: 60, element: 60, pressed: false },
       { id: 61, element: 61, pressed: false},
-      { id: 62, element: 62, pressed: true },
+      { id: 62, element: 62, pressed: false },
       { id: 63, element: 63, pressed: false },
       { id: 64, element: 64, pressed: false },
       { id: 65, element: 65, pressed: false },
@@ -85,7 +85,7 @@ class Matrix extends Component {
 
       { id: 70, element: 70, pressed: false },
       { id: 71, element: 71, pressed: false},
-      { id: 72, element: 72, pressed: true },
+      { id: 72, element: 72, pressed: false },
       { id: 73, element: 73, pressed: false },
       { id: 74, element: 74, pressed: false },
       { id: 75, element: 75, pressed: false },
@@ -96,14 +96,14 @@ class Matrix extends Component {
 
       { id: 80, element: 80, pressed: false },
       { id: 81, element: 81, pressed: false},
-      { id: 82, element: 82, pressed: true },
+      { id: 82, element: 82, pressed: false },
       { id: 83, element: 83, pressed: false },
       { id: 84, element: 84, pressed: false },
       { id: 85, element: 85, pressed: false },
       { id: 86, element: 86, pressed: false },
       { id: 87, element: 87, pressed: false },
       { id: 88, element: 88, pressed: false },
-      { id: 89, element: 89, pressed: true },
+      { id: 89, element: 89, pressed: false },
 
       { id: 90, element: 90, pressed: false },
       { id: 91, element: 91, pressed: false},
@@ -114,8 +114,42 @@ class Matrix extends Component {
       { id: 96, element: 96, pressed: false },
       { id: 97, element: 97, pressed: false },
       { id: 98, element: 98, pressed: false },
-      { id: 99, element: 99, pressed: true },
+      { id: 99, element: 99, pressed: false },
     ]
+  }
+  componentDidMount() {
+    {this.createRandomPress()}
+  }
+
+  createRandomNumber = () => {
+    let randomNumber = 0;
+    randomNumber = Math.random(10);
+    
+    //console.log(randomNumber);
+    return randomNumber;
+  }
+
+  createRandomPress = () => {
+    
+    
+    const cellsLength = this.state.cells.length;
+    let cells = this.state.cells;
+    
+    for (var i = 0; i < cellsLength; i++) {
+      let randomValue = this.createRandomNumber()
+    if (randomValue >= 0.5) {
+      
+      cells[i].pressed = true;
+      this.setState({cells:cells});
+      //console.log(cells[i].pressed);
+    } 
+    else {
+      
+      cells[i].pressed = false;
+      this.setState({cells:cells});
+      //console.log(cells[i].pressed);
+    }
+    }
   }
 
   createDiv = ( temp ) => {
@@ -129,8 +163,6 @@ class Matrix extends Component {
   }
 
   createDivision = () => {
-
-    // this.makeRow([this.state.cells[0], this.state.cells[1]]);
 
     let row_length = 10;
     var myCells = this.state.cells;
@@ -158,6 +190,7 @@ class Matrix extends Component {
       
       return (
          <div className="test">
+            
             {this.createDivision()}
           </div>
           )
