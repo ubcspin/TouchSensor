@@ -26,9 +26,10 @@ class Cell extends Component {
 
 	render() {
 		//console.log('props', this.props);
+		//this.props.sensorValue > 100 ? "gray": "red"}}>
 		return(
 
-			<div className={this.getColor()}>
+			<div className={this.getColor()} style={{backgroundColor: "rgb("+this.props.sensorValue+",0,0)"}}>
 			
 			</div>
 			)
