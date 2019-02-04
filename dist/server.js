@@ -11,77 +11,76 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-console.log(__dirname)
-console.log(__dirname + '/js')
+console.log(__dirname);
+console.log(__dirname + '/js');
 
 app.use('/js', express.static(__dirname + '/js'));
 
 // This is initializing the serial port
 const port = new SerialPort('/dev/cu.usbmodem14301', {
   baudRate: 512000
-})
-//This parses the data and logs it
-const parser = port.pipe(new ByteLength({length: 209}))
+});
 
+//This parses the data and logs it, reading 1 byte at a time
+const parser = port.pipe(new ByteLength({length: 1}));
+
+// Array msg holds the values being streamed from sensor
+let msg = [];
+// arr is 0xff used to build test Array
+const arr = [0xff];
+// Array test is used as a comparison in parser to look for 0xffffffff
+let test = [];
+test.push(Buffer.from(arr));
+test.push(Buffer.from(arr));
+test.push(Buffer.from(arr));
+test.push(Buffer.from(arr));
+//length of the array from Arduino
+const maxSize = 210;
+
+// Parser used to read data from Arduino one byte at a time
 parser.on('data', function(buff){
-  let arr = [];
-
-  for (var i=0; i < 100; i++) {
-    let offset = 9+(2*i);
-    arr.push(buff.readInt16LE(offset));
-
-  }
-  console.log(arr);
-}); // will have 209 bytes per data event
-
-
-function handleValue(sensorValue) {
-	//console.log(sensorValue);
-	io.emit('Sensor', sensorValue);
-	// for (var i = 0; i < 100; i++) {
-	// 	arr.push(sensorValue);
-	// 	console.log("Value at i is: " + arr[i]);
-	// }
+	let temp = msg.slice(0, 4);
+	let element = buff.toString('hex');
 	
+	let counter = 0;
+	if(temp.length === 4) {
+		
+	for (var i = 0; i < 4; i++) {
+		if (test[i].equals(temp[i])) {
+			counter++;
+		}
+	}
+}
+	if (counter === 4) {
+		attachElement(buff);
+	} 
+	else if (element == "ff") {
+		attachElement(buff);
+	} else {
+		msg = [];
+	}
+
+		
+}); 
+
+// Add one byte of data (buff) to the msg array. 
+// If the array is full, call handleValue and empty the array.
+function attachElement(buff) {
+	msg.push(buff);
+	
+	if (msg.length == maxSize) {
+		handleValue(msg);
+		msg = [];
+	}
+}
+// Sends the array of values (msg) to React
+function handleValue(msg) {
+	io.emit('Sensor', msg);
 }
 
 
 io.on('connection', function(socket){
   console.log('socket io server connected');
-  //io.emit('test');
-  //THIS IS THE BUTTON LOGIC FOR RANDOM VALUES///////////////////////////////
- //  socket.on('Get Array', function(){
-  	
-	// var length = 100;
-	// var arr = [];
-	
-	// arr[0] = this.handleValue();
-	// console.log("this is return value" + arr[0]);
-
-	// for (var i = 0; i < length; i++) {
-	// 	let randomNumber = Math.random(10);
-		
-	// 	if (randomNumber >= 0.5) {
-	// 		arr.push({id: i, element: i, pressed: true});
-	// 	}
-	// 	else {
-	// 		arr.push({id: i, element: i, pressed: false})
-	// 	}
-	// }
-
-	// console.log('sending element');
-	// io.emit('Array Contains', arr);
-	
-	// });
-	////////////////////////////////////////////////////////////////////////////
-	socket.on('Get Array', function(){
-		var arr = [];
-
-		arr[0] = {id: 0, element: 0, pressed: true}
-	io.emit('Array Contains', arr)
-
-	});
-	
 });
 
 http.listen(8080, function(){

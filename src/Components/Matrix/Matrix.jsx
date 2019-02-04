@@ -10,14 +10,13 @@ class Matrix extends Component {
       
       ],
       matrixLength: 10,
-      matrixWidth: 10,
-      sensorValue: 0 
+      matrixWidth: 10
   }
 
   handleNewCell = (arr) => {
       console.log('receiving element');
       let cells = this.state.cells;
-      //cells[1] = (arr);
+      
       for (var i = 0; i<arr.length; i++) {
         cells[i] = arr[i];
       }
@@ -25,22 +24,49 @@ class Matrix extends Component {
   }
 
   componentDidMount() {
-    /*socket.on('test', () => {
-      console.log('connection established');
-    });*/
-    {this.createRandomPress()}
 
-    socket.on('Array Contains', function(arr) {
-      this.handleNewCell(arr);
-    }.bind(this));
-
-    console.log("Reaching here");
-    socket.on('Sensor', function(sensorValue) {
-      //console.log(sensorValue);
-      this.setState({ sensorValue: sensorValue })
+    socket.on('Sensor', function(msg) {
+      var y = this.handleBuffer(msg);
+      var z = this.handleCellState(y);
+      this.setState({ cells : z })
     }.bind(this));
   }
 
+  handleBuffer = (msg) => {
+    let resultValuesArray = [];
+    for (var i = 8; i < 208; i+=2) {
+        var result = this.handleShift(msg[i], msg[i+1]);
+        
+        resultValuesArray.push(result);
+    }
+    return resultValuesArray;
+  }
+
+  handleShift = (element1, element2) => {
+    
+    var a = new Uint8Array(element1);
+    var b = new Uint8Array(element2);
+    
+    var filter = 0xffff;
+
+    var c = b << 8;
+    var a = a | c;
+    var d = b >> 8;
+    var a = a | d;
+    var a = a & filter;
+    
+    return a;
+    
+  }
+  
+  handleCellState = (y) => {
+    let temp = y;
+    let tempResult = [];
+    for (var i = 0; i <= 100; i++) {
+      tempResult.push({id: i, element: i, pressed: temp[i]});
+    }
+    return tempResult;
+  }
 
   handleMatrixSize = (length, width) => {
     const matrixLength = this.state.matrixLength;
@@ -60,60 +86,7 @@ class Matrix extends Component {
 
     return randomNumber;
   }
-
-  createRandomPress = () => {
-    
-    const length = this.state.matrixLength;
-    const width = this.state.matrixWidth;
-    const cellsLength = length * width;
-    let cells = this.state.cells;
-    
-    for (var i = 0; i < cellsLength; i++) {
-      let randomValue = this.createRandomNumber()
-    if (randomValue >= 0.5) {
-      cells.push({id: i, element: i, pressed: true});
-      
-      this.setState({ cells: cells });
-    } 
-    else {
-      cells.push({id: i, element: i, pressed: false});
-      
-      this.setState({ cells: cells });
-      
-    }
-   
-    }
-  }
-
-  resetRandomPress = () => {
-
-    const length = this.state.matrixLength;
-    const width = this.state.matrixWidth;
-    const cellsLength = length * width;
-    let cells = this.state.cells;
-    
-    for (var i = 0; i < cellsLength; i++) {
-      let randomValue = this.createRandomNumber()
-    if (randomValue >= 0.5) {
-      cells[i] = ({id: i, element: i, pressed: true});
-      
-      this.setState({ cells: cells });
-    } 
-    else {
-      cells[i] = ({id: i, element: i, pressed: false});
-      
-      this.setState({ cells: cells });
-      
-    }
-   
-    }
-
-  }
-
-  serverRandomPress = () => {
-    socket.emit('Get Array');
-  }
-
+  
   // cell is any html element. Effects: the element is wrapped in a div.
   createRowDivision = ( cell ) => {
     
@@ -171,16 +144,7 @@ class Matrix extends Component {
             10 x 10 Matrix
             </button>
 
-            <button 
-              onClick={() => this.resetRandomPress()}
-            >
-            Reset
-            </button>
-            <button 
-              onClick={() => this.serverRandomPress()}
-            >
-            Server
-            </button>
+           
             
           </div>
           )
