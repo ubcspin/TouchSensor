@@ -5,13 +5,15 @@ import io from 'socket.io-client';
 const socket = io('http://localhost:8080');
 
 class Matrix extends Component {
-      state = {
+  constructor(props) {
+    super(props);
+    this.state = {
       cells: [
-      
       ],
-      matrixLength: 10,
-      matrixWidth: 10
-  }
+      matrixLength: 16,
+      matrixWidth: 16
+  };
+}
 
   handleNewCell = (arr) => {
       console.log('receiving element');
@@ -24,17 +26,16 @@ class Matrix extends Component {
   }
 
   componentDidMount() {
-
     socket.on('Sensor', function(msg) {
       var y = this.handleBuffer(msg);
       var z = this.handleCellState(y);
       this.setState({ cells : z })
     }.bind(this));
   }
-
+  //TODO: make the number of iterations in loop dynamic
   handleBuffer = (msg) => {
     let resultValuesArray = [];
-    for (var i = 8; i < 208; i+=2) {
+    for (var i = 8; i < 520; i+=2) {
         var result = this.handleShift(msg[i], msg[i+1]);
         
         resultValuesArray.push(result);
@@ -54,15 +55,15 @@ class Matrix extends Component {
     var d = b >> 8;
     var a = a | d;
     var a = a & filter;
-    
+    var a = Math.floor(a / 4);
     return a;
     
   }
-  
+  //TODO: make the number of iteration in loop dynamic
   handleCellState = (y) => {
     let temp = y;
     let tempResult = [];
-    for (var i = 0; i <= 100; i++) {
+    for (var i = 0; i <= 256; i++) {
       tempResult.push({id: i, element: i, pressed: temp[i]});
     }
     return tempResult;
@@ -80,13 +81,6 @@ class Matrix extends Component {
 
   }
 
-  createRandomNumber = () => {
-    let randomNumber = 0;
-    randomNumber = Math.random(10);
-
-    return randomNumber;
-  }
-  
   // cell is any html element. Effects: the element is wrapped in a div.
   createRowDivision = ( cell ) => {
     
@@ -126,7 +120,7 @@ class Matrix extends Component {
       
       return (
          <div className="test">
-          <h2>Displaying Matrix</h2>
+          <h2>Displaying Matrix Demo</h2>
             {this.createDivision()}
             <button 
               onClick={() => this.handleMatrixSize(3,3)}
@@ -134,9 +128,9 @@ class Matrix extends Component {
             3 x 3 Matrix
             </button>
             <button 
-              onClick={() => this.handleMatrixSize(5,5)}
+              onClick={() => this.handleMatrixSize(16,16)}
             >
-            5 x 5 Matrix
+            16 x 16 Matrix
             </button>
             <button 
               onClick={() => this.handleMatrixSize(10,10)}

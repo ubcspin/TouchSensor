@@ -35,7 +35,7 @@ test.push(Buffer.from(arr));
 test.push(Buffer.from(arr));
 test.push(Buffer.from(arr));
 //length of the array from Arduino
-const maxSize = 210;
+const maxSize = 520;
 
 // Parser used to read data from Arduino one byte at a time
 parser.on('data', function(buff){

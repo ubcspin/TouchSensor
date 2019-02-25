@@ -1,7 +1,7 @@
 import React from 'react';
 
 const page = () => {
-    return <h1>Displaying Matrix</h1>
+    return <h1>Touch Sensor Demo</h1>
     
 };
 

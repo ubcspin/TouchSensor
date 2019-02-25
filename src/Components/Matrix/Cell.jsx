@@ -18,7 +18,7 @@ class Cell extends Component {
 		return(
 
 			<div className={"Cell0"} style={{backgroundColor: "rgb("+this.props.pressed+",255,255)"}}>
-			
+				<p>{this.props.pressed}</p>
 			</div>
 			)
 	}
