@@ -10,55 +10,82 @@ class Matrix extends Component {
     this.state = {
       cells: [
       ],
-      matrixLength: 16,
-      matrixWidth: 16
+      matrixLength: 0,
+      matrixWidth: 0,
+      sensorBuffer: [
+      ],
+      matrixTimeStamp: 0
   };
 }
 
-  handleNewCell = (arr) => {
-      console.log('receiving element');
-      let cells = this.state.cells;
+  // handleNewCell = (arr) => {
+  //     console.log('receiving element');
+  //     let cells = this.state.cells;
       
-      for (var i = 0; i<arr.length; i++) {
-        cells[i] = arr[i];
-      }
-      this.setState({ cells:cells });
-  }
+  //     for (var i = 0; i<arr.length; i++) {
+  //       cells[i] = arr[i];
+  //     }
+  //     this.setState({ cells:cells });
+  // }
 
   componentDidMount() {
-    socket.on('Sensor', function(msg) {
-      var y = this.handleBuffer(msg);
-      var z = this.handleCellState(y);
-      this.setState({ cells : z })
+    socket.on('Sensor', function(shiftedArray) {
+      //console.log(shiftedArray);
+      // var y = this.handleBuffer(msg);
+      const sensorBuffer = this.state.sensorBuffer;
+      var buff = shiftedArray;
+      this.setState({ sensorBuffer : buff });
+      //console.log(sensorBuffer);
+      this.handleSensorBuffer(sensorBuffer);
+      //  var z = this.handleCellState(shiftedArray);
+      // this.setState({ cells : z })
     }.bind(this));
   }
+
+  handleSensorBuffer = (sensorBuffer) => {
+    var buff = sensorBuffer;
+    var length = buff[0];
+    var timeStamp = buff[1];
+    console.log(buff.length);
+    this.handleMatrixSize(length);
+    this.handleTimeStamp(timeStamp);
+
+    //this.handleCellState(buff)
+  }
+
+  handleTimeStamp = (timeStamp) => {
+    var stamp = timeStamp;
+    const matrixTimeStamp = this.state.matrixTimeStamp;
+    //console.log(stamp);
+    this.setState({ matrixTimeStamp: stamp })
+  }
   //TODO: make the number of iterations in loop dynamic
-  handleBuffer = (msg) => {
-    let resultValuesArray = [];
-    for (var i = 8; i < 520; i+=2) {
-        var result = this.handleShift(msg[i], msg[i+1]);
+  // handleBuffer = (msg) => {
+  //   let resultValuesArray = [];
+  //   for (var i = 8; i < 520; i+=2) {
+  //       var result = this.handleShift(msg[i], msg[i+1]);
         
-        resultValuesArray.push(result);
-    }
-    return resultValuesArray;
-  }
+  //       resultValuesArray.push(result);
+  //   }
+  //   return resultValuesArray;
+  // }
 
-  handleShift = (element1, element2) => {
+  // handleShift = (element1, element2) => {
+  //   //TODO: have the bit operations in server
+  //   var a = new Uint8Array(element1);
+  //   var b = new Uint8Array(element2);
     
-    var a = new Uint8Array(element1);
-    var b = new Uint8Array(element2);
-    
-    var filter = 0xffff;
+  //   var filter = 0xffff;
 
-    var c = b << 8;
-    var a = a | c;
-    var d = b >> 8;
-    var a = a | d;
-    var a = a & filter;
-    var a = Math.floor(a / 4);
-    return a;
+  //   var c = b << 8;
+  //   var a = a | c;
+  //   var d = b >> 8;
+  //   var a = a | d;
+  //   var a = a & filter;
+  //   var a = Math.floor(a / 4);
+  //   return a;
     
-  }
+  // }
   //TODO: make the number of iteration in loop dynamic
   handleCellState = (y) => {
     let temp = y;
@@ -69,14 +96,16 @@ class Matrix extends Component {
     return tempResult;
   }
 
-  handleMatrixSize = (length, width) => {
+  handleMatrixSize = (length) => {
     const matrixLength = this.state.matrixLength;
     const matrixWidth = this.state.matrixWidth;
-    let newLength = length;
-    let newWidth = width;
+    var squareRoot = Math.sqrt(length);
+    //console.log(squareRoot);
+    //var squareLength = Math.floor(squareRoot);
+    
 
-    this.setState({matrixWidth: newWidth});
-    this.setState({matrixLength: newLength});
+    this.setState({matrixWidth: squareRoot});
+    this.setState({matrixLength: squareRoot});
     
 
   }
