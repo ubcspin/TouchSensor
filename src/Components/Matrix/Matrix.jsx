@@ -15,19 +15,9 @@ class Matrix extends Component {
   };
 }
 
-  // handleNewCell = (arr) => {
-  //     console.log('receiving element');
-  //     let cells = this.state.cells;
-      
-  //     for (var i = 0; i<arr.length; i++) {
-  //       cells[i] = arr[i];
-  //     }
-  //     this.setState({ cells:cells });
-  // }
-
   componentDidMount() {
     socket.on('Sensor', function(msg) {
-      //console.log(msg);
+      console.log(msg);
       // var y = this.handleBuffer(msg);
       const matrixValues = this.state.matrixValues;
      
@@ -41,39 +31,8 @@ class Matrix extends Component {
       
         this.setState({ cells : cellValues });
       
-      
-      
-      
-
-      
-
-      //console.log(sensorBuffer);
-      //this.handleSensorBuffer(sensorBuffer);
-      //  var z = this.handleCellState(shiftedArray);
-      // this.setState({ cells : z })
     }.bind(this));
   }
-
-  // handleSensorBuffer = (sensorBuffer) => {
-  //   var buff = sensorBuffer;
-  //   var length = buff[0];
-  //   var timeStamp = buff[1];
-  //   console.log(buff.length);
-  //   this.handleMatrixSize(length);
-  //   this.handleTimeStamp(timeStamp);
-
-  //   //this.handleCellState(buff)
-  // }
-
-  // handleTimeStamp = (timeStamp) => {
-  //   var stamp = timeStamp;
-  //   const matrixTimeStamp = this.state.matrixTimeStamp;
-  //   //console.log(stamp);
-  //   this.setState({ matrixTimeStamp: stamp })
-  // }
-
-
-
 
   //TODO: make the number of iteration in loop dynamic
   handleCellState = (values) => {
