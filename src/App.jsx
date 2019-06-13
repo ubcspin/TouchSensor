@@ -14,11 +14,11 @@ class App extends Component {
 
 
   handleMatrixClick() {
-    this.setState({showMatrix: true});
+    this.setState({ showMatrix: true });
   }
 
   handleCircularClick() {
-    this.setState({showCircular: true});
+    this.setState({ showCircular: true });
   }
 
   	render() {
@@ -39,10 +39,10 @@ class App extends Component {
            
            {display}
             <button onClick={() => this.handleMatrixClick()}>
-              Matrix Demo
+              HTML/CSS Demo
             </button>
             <button onClick={() => this.handleCircularClick()}>
-              Circular Demo
+              D3 Demo
             </button>
 
       		</div>

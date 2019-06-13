@@ -11,13 +11,14 @@ class Circular extends Component {
     super(props);
     
     this.state = {
-      rowLength: 16,
-      columnLength: 16,
+      rowLength: 0,
+      columnLength: 0,
       values: [  
       ]
     };
-    //this.createGraph = this.createGraph.bind(this);
-    //this.setValuesToState = this.setValuesToState.bind(this);
+    this.createGraph = this.createGraph.bind(this);
+    this.setValuesToState = this.setValuesToState.bind(this);
+    //this.colorMap = this.colorMap.bind(this);
   }
 
   componentDidMount() {
@@ -34,9 +35,7 @@ class Circular extends Component {
   }
 
   //Used to update state as back-end sends data
-  //TODO: Call functions that update DOM here (might work)
   componentDidUpdate() {
-    //this.updateGraph(); //Update the graph from new data values
     this.createGraph();
     
   }
@@ -44,23 +43,43 @@ class Circular extends Component {
   //Set the state varialbes here
   setValuesToState(msg) {
     //console.log("setValuesToState was called");
-    //var width = msg.width; //The width of the values array from socket
-    //var columnLength = Math.sqrt(width); //Set these as global in future with redux
-    //var rowLength = Math.sqrt(width);
+    var width = msg.width; //The width of the values array from socket
+    var columnLength = Math.sqrt(width); //Set these as global in future with redux
+    var rowLength = Math.sqrt(width);
     let data = [];
+    
     let tempData = msg.valuesArray; //Obtain values from the back-end
     for (var i = 0; i < tempData.length; i++) {
-      data.push({ index:i, data:Math.floor(tempData[i]/4)});
+      data.push({ index:i, data:tempData[i] });
     }
     
-    //this.setState({ rowLength: rowLength });
-    //this.setState({ columnLength: columnLength});
+    this.setState({ rowLength: rowLength });
+    this.setState({ columnLength: columnLength});
     this.setState({ values: data });
   }
+  //TODO:Create a function colorMap that returns the rgb string
+  
 
   createGraph() {
-    //console.log("createGraph was called");
-    //console.log(this.state.values);
+    
+    function colorMap(data) {
+      
+      let firstTierValue = Math.round(((data - 900)/124) * 128);
+      let secondTierValue = Math.round(256 - ((data-500)/399) * 128);
+      let thirdTierValue = Math.round(256 - (data/499 * 256));
+      if (data >= 900) {
+        return "rgb(128, " + firstTierValue + ", " + firstTierValue + ")";
+      }
+      if (data >= 500 && data < 900) {
+        return "rgb(" + secondTierValue + ", 0, 0)";
+      } 
+      if (data < 500) {
+        return "rgb(256, " + thirdTierValue + ", " + thirdTierValue + ")";
+      } else {
+        return "rgb(128, 128, 128)";
+      }
+    }
+
     const node = this.node;
     var w = 40; //Width of cell
     var h = 40; //Height of cell
@@ -88,19 +107,9 @@ class Circular extends Component {
       .data(data 
         //console.log(d);
         //return d.value;
-      ) //just a temporary value for rgb
-            //.exit().remove()
+      ) 
       .enter()
       .append("rect")
-     
-
-    // svgGrid
-    //   .selectAll("rect")
-    //   .data(data, function(d) {
-    //     return d;
-    //   })
-    //   .exit()
-    //   .remove()
     
     svgGrid
       .selectAll("rect")
@@ -119,67 +128,18 @@ class Circular extends Component {
         let currentY = Math.floor(d.index / rowLength);//Move 1 unit down per rowLength
         return (currentY * h);
       })
-      .style("fill", function(d) {
-        //console.log("data: " + d);
-        return "rgb(" + d.data + ", 0, 0)"; //Set level of red in rgb based on data
+      .style(
+        //Call a function here, colorMap, that returns a string of rgb 
+        "fill", function(d) {
+          return colorMap(d.data); //"rgb(128, " + d.data + ", " + d.data + ")"; //Set level of red in rgb based on data
       });
-      //svgGrid.exit().remove(data);
-            //this.updateGraph();
-            
-            
-
-  }
-
-  updateGraph() {
-    //console.log("updateGraph was called");
-    var w = 40; //Width of cell
-    var h = 40; //Height of cell
-    var padding = 5; //Space between each cell
-    var columnLength = this.state.columnLength;
-    
-    var rowLength = this.state.rowLength;
-    var initialLength = columnLength * rowLength;
-   
-    var data = this.state.values;
-    
-
-    //console.log("Reached this method");
-    //TODO: Try removing SVG here
-    //d3.exit().remove(this.refs.squareRender);
-    var svgGrid = d3.select(node);
-    
-    //Create cells for each data in sampleData
-    svgGrid
-            
-            .data(data, function(d) {
-              return d;
-            })
-            .enter()
-            .append("rect")
-            .attr("width", w - padding) //Subtract padding to create space between cells
-            .attr("height", h - padding)
-            .attr("x", function(d, i) {
-              let currentX = Math.floor(i % columnLength);//Move 1 index over per cell
-                return (currentX * w);
-            })
-            .attr("y", function(d, i) {
-              let currentY = Math.floor(i / rowLength);//Move 1 unit down per rowLength
-              return (currentY * h);
-            }) 
-            
-            
-            .style("fill", function(d) {
-              return "rgb(" + d + ", 0, 0)"; //Set level of red in rgb based on data
-            });
-            //svgGrid.exit().remove();
-            
-          
+     
   }
 
   render() {
       return (
         <svg ref={node => this.node = node}
-          width="800" height="800">  
+          width="500" height="500">  
         </svg>
       )
   };
