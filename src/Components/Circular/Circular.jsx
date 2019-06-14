@@ -99,7 +99,7 @@ class Circular extends Component {
     svgGrid
       .selectAll("rect")
       .remove()
-    //Create cells for each data in sampleData
+    
     svgGrid
       .selectAll("rect")
       .data(data 
