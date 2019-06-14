@@ -17,8 +17,8 @@ class Matrix extends Component {
 
   componentDidMount() {
     socket.on('Sensor', function(msg) {
-      console.log(msg);
-      // var y = this.handleBuffer(msg);
+      //console.log(msg);
+      
       const matrixValues = this.state.matrixValues;
      
       let values = msg.valuesArray;
@@ -52,9 +52,6 @@ class Matrix extends Component {
     const matrixLength = this.state.matrixLength;
     const matrixWidth = this.state.matrixWidth;
     var squareRoot = Math.sqrt(width);
-    //console.log(squareRoot);
-    //var squareLength = Math.floor(squareRoot);
-    
 
     this.setState({matrixWidth: squareRoot});
     this.setState({matrixLength: squareRoot});
@@ -76,7 +73,7 @@ class Matrix extends Component {
 
     let row_length = this.state.matrixLength;
     var myCells = this.state.cells;
-    const num_rows = this.state.matrixWidth; //Math.ceil(myCells.length / row_length);
+    const num_rows = this.state.matrixWidth; 
     
     // TODO: rewrite to be more functional
     // e.g., remove v these accumulators and replace with "pure" maps, etc.
@@ -103,24 +100,7 @@ class Matrix extends Component {
          <div className="test">
           <h2>Displaying Matrix Demo</h2>
             {this.createDivision()}
-            <button 
-              onClick={() => this.handleMatrixSize(3,3)}
-            >
-            3 x 3 Matrix
-            </button>
-            <button 
-              onClick={() => this.handleMatrixSize(16,16)}
-            >
-            16 x 16 Matrix
-            </button>
-            <button 
-              onClick={() => this.handleMatrixSize(10,10)}
-            >
-            10 x 10 Matrix
-            </button>
 
-           
-            
           </div>
           )
       }
