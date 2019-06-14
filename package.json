@@ -17,7 +17,6 @@
     "babel-loader": "^7.1.5",
     "css-loader": "^1.0.0",
     "d3": "^5.9.2",
-    "d3-delaunay": "^4.1.5",
     "express": "^4.15.2",
     "johnny-five": "^1.0.0",
     "react": "^16.4.2",
