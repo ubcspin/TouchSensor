@@ -28,7 +28,6 @@ class Circular extends Component {
     }.bind(this));
     
     this.createGraph();
-    //setTimeout(function() {this.createGraph()}.bind(this), 100); //This works because of delay, but no render
     
   }
 
@@ -40,7 +39,7 @@ class Circular extends Component {
 
   //Set the state varialbes here
   setValuesToState(msg) {
-    //console.log("setValuesToState was called");
+   
     var width = msg.width; //The width of the values array from socket
     var columnLength = Math.sqrt(width); //Set these as global in future with redux
     var rowLength = Math.sqrt(width);
@@ -55,11 +54,10 @@ class Circular extends Component {
     this.setState({ columnLength: columnLength});
     this.setState({ values: data });
   }
-  //TODO:Create a function colorMap that returns the rgb string
-  
 
   createGraph() {
-    
+    //Change color from gray to red to white
+    //Returns a string of rgb values
     function colorMap(data) {
       
       let firstTierValue = Math.round(((data - 900)/124) * 128);
@@ -86,14 +84,9 @@ class Circular extends Component {
     
     var rowLength = this.state.rowLength;
     var initialLength = columnLength * rowLength; //The number of cells in matrix
-    // var data = [];
-    // for (var i = 0; i < initialLength; i++) {
-    //    data.push(0);
-    //  }
-    //console.log(this.state.values);
+    
     var data = this.state.values;
-    // console.log("Initial length is " + initialLength);
-    //console.log("The data array is " , data);
+    
     var svgGrid = d3.select(node);
     
     svgGrid
@@ -102,25 +95,18 @@ class Circular extends Component {
     
     svgGrid
       .selectAll("rect")
-      .data(data 
-        //console.log(d);
-        //return d.value;
-      ) 
+      .data(data) 
       .enter()
       .append("rect")
     
     svgGrid
       .selectAll("rect")
-      .data(data 
-        //console.log(d);
-        //return d.data;
-      )
+      .data(data)
       .attr("width", w - padding) //Subtract padding to create space between cells
       .attr("height", h - padding)
       .attr("x", function(d) {
         let currentX = d.index % columnLength;//Move 1 index over per cell
-        //console.log(i);
-          return (currentX * w);
+        return (currentX * w);
       })
       .attr("y", function(d) {
         let currentY = Math.floor(d.index / rowLength);//Move 1 unit down per rowLength
@@ -129,7 +115,7 @@ class Circular extends Component {
       .style(
         //Call a function here, colorMap, that returns a string of rgb 
         "fill", function(d) {
-          return colorMap(d.data); //"rgb(128, " + d.data + ", " + d.data + ")"; //Set level of red in rgb based on data
+          return colorMap(d.data);
       });
      
   }
