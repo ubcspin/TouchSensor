@@ -1,35 +1,35 @@
 import React, { Component } from 'react';
 import Page from './components/Layout/Page.jsx';
 import Matrix from './components/Matrix/Matrix.jsx';
-import Circular from './components/Circular/Circular.jsx';
+import D3Matrix from './components/D3Matrix/D3Matrix.jsx';
 import './App.css';
 
 class App extends Component {
  
     state = {
      showMatrix: false,
-     showCircular: false
+     showD3Matrix: false
     }
   
 
 
   handleMatrixClick() {
-    this.setState({showMatrix: true});
+    this.setState({ showMatrix: true });
   }
 
-  handleCircularClick() {
-    this.setState({showCircular: true});
+  handleD3MatrixClick() {
+    this.setState({ showD3Matrix: true });
   }
 
   	render() {
         const showMatrix = this.state.showMatrix;
-        const showCircular = this.state.showCircular;
+        const showD3Matrix = this.state.showD3Matrix;
         let display;
         
         if (showMatrix) {
           display = <Matrix />;
-        } else if (showCircular) {
-          display = <Circular />;
+        } else if (showD3Matrix) {
+          display = <D3Matrix />;
         } else {
           display = <Page />;
         }
@@ -39,10 +39,10 @@ class App extends Component {
            
            {display}
             <button onClick={() => this.handleMatrixClick()}>
-              Matrix Demo
+              HTML/CSS Demo
             </button>
-            <button onClick={() => this.handleCircularClick()}>
-              Circular Demo
+            <button onClick={() => this.handleD3MatrixClick()}>
+              D3 Demo
             </button>
 
       		</div>
