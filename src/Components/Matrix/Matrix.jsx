@@ -10,73 +10,95 @@ class Matrix extends Component {
     this.state = {
       cells: [
       ],
-      matrixLength: 16,
-      matrixWidth: 16
+      matrixLength: 0,
+      matrixWidth: 0
   };
 }
 
-  handleNewCell = (arr) => {
-      console.log('receiving element');
-      let cells = this.state.cells;
+  // handleNewCell = (arr) => {
+  //     console.log('receiving element');
+  //     let cells = this.state.cells;
       
-      for (var i = 0; i<arr.length; i++) {
-        cells[i] = arr[i];
-      }
-      this.setState({ cells:cells });
-  }
+  //     for (var i = 0; i<arr.length; i++) {
+  //       cells[i] = arr[i];
+  //     }
+  //     this.setState({ cells:cells });
+  // }
 
   componentDidMount() {
     socket.on('Sensor', function(msg) {
-      var y = this.handleBuffer(msg);
-      var z = this.handleCellState(y);
-      this.setState({ cells : z })
+      //console.log(msg);
+      // var y = this.handleBuffer(msg);
+      const matrixValues = this.state.matrixValues;
+     
+      let values = msg.valuesArray;
+      
+      let width = msg.width;
+      this.handleMatrixSize(width);
+      
+        let cellValues = this.handleCellState(values);
+      
+      
+        this.setState({ cells : cellValues });
+      
+      
+      
+      
+
+      
+
+      //console.log(sensorBuffer);
+      //this.handleSensorBuffer(sensorBuffer);
+      //  var z = this.handleCellState(shiftedArray);
+      // this.setState({ cells : z })
     }.bind(this));
   }
-  //TODO: make the number of iterations in loop dynamic
-  handleBuffer = (msg) => {
-    let resultValuesArray = [];
-    for (var i = 8; i < 520; i+=2) {
-        var result = this.handleShift(msg[i], msg[i+1]);
-        
-        resultValuesArray.push(result);
-    }
-    return resultValuesArray;
-  }
 
-  handleShift = (element1, element2) => {
-    
-    var a = new Uint8Array(element1);
-    var b = new Uint8Array(element2);
-    
-    var filter = 0xffff;
+  // handleSensorBuffer = (sensorBuffer) => {
+  //   var buff = sensorBuffer;
+  //   var length = buff[0];
+  //   var timeStamp = buff[1];
+  //   console.log(buff.length);
+  //   this.handleMatrixSize(length);
+  //   this.handleTimeStamp(timeStamp);
 
-    var c = b << 8;
-    var a = a | c;
-    var d = b >> 8;
-    var a = a | d;
-    var a = a & filter;
-    var a = Math.floor(a / 4);
-    return a;
-    
-  }
+  //   //this.handleCellState(buff)
+  // }
+
+  // handleTimeStamp = (timeStamp) => {
+  //   var stamp = timeStamp;
+  //   const matrixTimeStamp = this.state.matrixTimeStamp;
+  //   //console.log(stamp);
+  //   this.setState({ matrixTimeStamp: stamp })
+  // }
+
+
+
+
   //TODO: make the number of iteration in loop dynamic
-  handleCellState = (y) => {
-    let temp = y;
+  handleCellState = (values) => {
+    let temp = values;
     let tempResult = [];
-    for (var i = 0; i <= 256; i++) {
-      tempResult.push({id: i, element: i, pressed: temp[i]});
+    let width = this.state.matrixWidth;
+    let length = this.state.matrixLength;
+    let lengthOfCells = length * width;
+    
+    for (var i = 0; i <= lengthOfCells; i++) {
+      tempResult.push({ id: i, element: i, pressed: Math.floor(temp[i]/4) });
     }
     return tempResult;
   }
 
-  handleMatrixSize = (length, width) => {
+  handleMatrixSize = (width) => {
     const matrixLength = this.state.matrixLength;
     const matrixWidth = this.state.matrixWidth;
-    let newLength = length;
-    let newWidth = width;
+    var squareRoot = Math.sqrt(width);
+    //console.log(squareRoot);
+    //var squareLength = Math.floor(squareRoot);
+    
 
-    this.setState({matrixWidth: newWidth});
-    this.setState({matrixLength: newLength});
+    this.setState({matrixWidth: squareRoot});
+    this.setState({matrixLength: squareRoot});
     
 
   }
@@ -106,7 +128,7 @@ class Matrix extends Component {
         var rowArray = myCells.slice(i * row_length, ((i*row_length) + row_length));
         
         let cell = rowArray.map(function(cell, i, arr) { 
-          return (<Cell key={cell.id} element={cell.element} pressed={cell.pressed} sensorValue={this.state.sensorValue}/>)
+          return (<Cell key={cell.id} element={cell.element} pressed={cell.pressed} />)
         }.bind(this));
         
         matrix = matrix.concat(this.createRowDivision(cell));
