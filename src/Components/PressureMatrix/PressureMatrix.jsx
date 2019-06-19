@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
+const pressure = require("pressure");
 import io from 'socket.io-client';
+
 
 const socket = io('http://localhost:8080');
 
-class D3Matrix extends Component {
+class PressureMatrix extends Component {
   constructor(props) {
     super(props);
     
@@ -20,13 +22,7 @@ class D3Matrix extends Component {
   }
 
   componentDidMount() {
-    
-    socket.on("Sensor", function(msg) {
-   
-    this.setValuesToState(msg); //Set the state in setValuesToState with values from msg
-    
-    }.bind(this));
-    
+    this.setValuesToState();
     this.createGraph();
     
   }
@@ -40,19 +36,23 @@ class D3Matrix extends Component {
   //Set the state varialbes here
   setValuesToState(msg) {
    
-    var width = msg.width; //The width of the values array from socket
+    var width = 100; //This will be a fixed 10x10 demo
     var columnLength = Math.sqrt(width); //Set these as global in future with redux
     var rowLength = Math.sqrt(width);
+    let completeArray = [];
+    //TODO: Stream values from pressurejs as data
     let data = [];
-    
-    let tempData = msg.valuesArray; //Obtain values from the back-end
+    for (var i = 0; i < width; i++) {
+        data.push(1024);
+    }
+    let tempData = data; //Obtain values from the back-end
     for (var i = 0; i < tempData.length; i++) {
-      data.push({ index:i, data:tempData[i] });
+      completeArray.push({ index:i, data:tempData[i] });
     }
     
     this.setState({ rowLength: rowLength });
     this.setState({ columnLength: columnLength});
-    this.setState({ values: data });
+    this.setState({ values: completeArray });
   }
 
   createGraph() {
@@ -80,8 +80,8 @@ class D3Matrix extends Component {
     var w = 40; //Width of cell
     var h = 40; //Height of cell
     var padding = 5; //Space between each cell
-    var columnLength = this.state.columnLength;
     
+    var columnLength = this.state.columnLength;
     var rowLength = this.state.rowLength;
     var initialLength = columnLength * rowLength; //The number of cells in matrix
     
@@ -102,6 +102,9 @@ class D3Matrix extends Component {
     svgGrid
       .selectAll("rect")
       .data(data)
+      .attr("id", function(d, i) {
+          return "rect" + i;
+      })
       .attr("width", w - padding) //Subtract padding to create space between cells
       .attr("height", h - padding)
       .attr("x", function(d) {
@@ -117,7 +120,11 @@ class D3Matrix extends Component {
         "fill", function(d) {
           return colorMap(d.data);
       });
-     
+     pressure.set("#rect1", {
+         start: function(event) {
+             console.log("a click");
+         }
+     });
   }
 
   render() {
@@ -129,4 +136,4 @@ class D3Matrix extends Component {
   };
 }
 
-export default D3Matrix;
+export default PressureMatrix;
