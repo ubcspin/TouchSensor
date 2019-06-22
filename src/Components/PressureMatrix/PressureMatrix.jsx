@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
 const pressure = require("pressure");
-import io from 'socket.io-client';
+//import io from 'socket.io-client';
 
 
-const socket = io('http://localhost:8080');
+//const socket = io('http://localhost:8080');
 
 class PressureMatrix extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class PressureMatrix extends Component {
     };
     this.createGraph = this.createGraph.bind(this);
     this.setValuesToState = this.setValuesToState.bind(this);
+    this.handleMousedown = this.handleMousedown.bind(this);
     //this.colorMap = this.colorMap.bind(this);
   }
 
@@ -26,8 +27,7 @@ class PressureMatrix extends Component {
     this.createGraph();
     
   }
-
-  //Used to update state as back-end sends data
+  
   componentDidUpdate() {
     this.createGraph();
     
@@ -54,27 +54,18 @@ class PressureMatrix extends Component {
     this.setState({ columnLength: columnLength});
     this.setState({ values: completeArray });
   }
+  
+
+  handleMousedown(node) {
+    console.log("Got here");
+    node
+      .style("fill", "rgb(256,0,0");
+  }
 
   createGraph() {
+    
     //Change color from gray to red to white
     //Returns a string of rgb values
-    function colorMap(data) {
-      
-      let firstTierValue = Math.round(((data - 900)/124) * 128);
-      let secondTierValue = Math.round(256 - ((data-500)/399) * 128);
-      let thirdTierValue = Math.round(256 - (data/499 * 256));
-      if (data >= 900) {
-        return "rgb(128, " + firstTierValue + ", " + firstTierValue + ")";
-      }
-      if (data >= 500 && data < 900) {
-        return "rgb(" + secondTierValue + ", 0, 0)";
-      } 
-      if (data < 500) {
-        return "rgb(256, " + thirdTierValue + ", " + thirdTierValue + ")";
-      } else {
-        return "rgb(128, 128, 128)";
-      }
-    }
 
     const node = this.node;
     var w = 40; //Width of cell
@@ -98,6 +89,7 @@ class PressureMatrix extends Component {
       .data(data) 
       .enter()
       .append("rect")
+      
     
     svgGrid
       .selectAll("rect")
@@ -115,23 +107,39 @@ class PressureMatrix extends Component {
         let currentY = Math.floor(d.index / rowLength);//Move 1 unit down per rowLength
         return (currentY * h);
       })
-      .style(
-        //Call a function here, colorMap, that returns a string of rgb 
-        "fill", function(d) {
-          return colorMap(d.data);
-      });
-     pressure.set("#rect1", {
-         start: function(event) {
-             console.log("a click");
-         }
-     });
+      .style("fill", "rgb(128, 128, 128)") //inital matrix color
+      
+      .on("mousedown", function(d,i) {
+        d3.select(this)
+          .style("fill", "rgb(256,0,0")
+          .transition()
+          .duration(1000)
+          .style("fill", "rgb(256,256,256)")
+        //this.handleMousedown(node);
+        //console.log(d,i);
+      })//.bind(this));
+      
+      .on("mouseup", function(d,i){
+        d3.select(this)
+          .interrupt()
+          .style("fill", "rgb(128,128,128)")
+      })
+      .on("mouseleave", function(d,i){
+        d3.select(this)
+          .interrupt()
+          .style("fill", "rgb(128,128,128)")
+    })
+     
   }
-
+  
   render() {
       return (
-        <svg ref={node => this.node = node}
-          width="500" height="500">  
-        </svg>
+        <div>
+          <svg ref={node => this.node = node}
+           width="500" height="500"> 
+            
+          </svg>
+        </div>
       )
   };
 }
