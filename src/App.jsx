@@ -4,6 +4,9 @@ import Matrix from './components/Matrix/Matrix.jsx';
 import D3Matrix from './components/D3Matrix/D3Matrix.jsx';
 import PressureMatrix from './components/PressureMatrix/PressureMatrix.jsx';
 import './App.css';
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:8080');
 
 class App extends Component {
  
@@ -17,14 +20,22 @@ class App extends Component {
 
   handleMatrixClick() {
     this.setState({ showMatrix: true });
+    this.setState({ showD3Matrix: false });
+    this.setState({ showPressureMatrix: false });
+    socket.emit("demo");
   }
 
   handleD3MatrixClick() {
     this.setState({ showD3Matrix: true });
+    this.setState({ showMatrix: false });
+    this.setState({ showPressureMatrix: false });
+    socket.emit("demo");
   }
 
   handlePressureClick() {
     this.setState({ showPressureMatrix: true });
+    this.setState({ showD3Matrix: false });
+    this.setState({ showMatrix: false });
   }
 
   	render() {
