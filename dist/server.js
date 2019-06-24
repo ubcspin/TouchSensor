@@ -203,6 +203,10 @@ io.on('connection', function(socket){
   })
 });
 
+io.on('error', function(){
+	console.log("no socket io connection");
+})
+
 
 
 http.listen(8080, function(){

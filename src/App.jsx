@@ -19,21 +19,27 @@ class App extends Component {
 
 
   handleMatrixClick() {
-    this.setState({ showMatrix: true });
+    this.setState((state) => ({
+       showMatrix: !this.state.showMatrix 
+      }));
     this.setState({ showD3Matrix: false });
     this.setState({ showPressureMatrix: false });
     socket.emit("demo");
   }
 
   handleD3MatrixClick() {
-    this.setState({ showD3Matrix: true });
+    this.setState((state) => ({
+      showD3Matrix: !this.state.showD3Matrix 
+     }));
     this.setState({ showMatrix: false });
     this.setState({ showPressureMatrix: false });
     socket.emit("demo");
   }
 
   handlePressureClick() {
-    this.setState({ showPressureMatrix: true });
+    this.setState((state) => ({
+      showPressureMatrix: !this.state.showPressureMatrix 
+     }));
     this.setState({ showD3Matrix: false });
     this.setState({ showMatrix: false });
   }
