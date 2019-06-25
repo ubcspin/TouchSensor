@@ -18,8 +18,6 @@ class PressureMatrix extends Component {
     };
     this.createGraph = this.createGraph.bind(this);
     this.setValuesToState = this.setValuesToState.bind(this);
-    this.handleMousedown = this.handleMousedown.bind(this);
-    //this.colorMap = this.colorMap.bind(this);
   }
 
   componentDidMount() {
@@ -56,16 +54,7 @@ class PressureMatrix extends Component {
   }
   
 
-  handleMousedown(node) {
-    console.log("Got here");
-    node
-      .style("fill", "rgb(256,0,0");
-  }
-
   createGraph() {
-    
-    //Change color from gray to red to white
-    //Returns a string of rgb values
 
     const node = this.node;
     var w = 40; //Width of cell
@@ -111,57 +100,11 @@ class PressureMatrix extends Component {
       .style("fill", "rgb(128, 128, 128)") //inital matrix color
       
       .on("mouseover", function(d,i) {
-        //console.log(this);
-  
-        //console.log("Current mouse position: ", d3.mouse(this))
-        /*
-        
-        
-        var u = i - rowLength;
-        var d = i + rowLength;
-        var l = i - 1;
-        var r = i + 1;
-        var ul = u - 1;
-        var ur = u + 1;
-        var ll = d - 1;
-        var lr = d + 1;
-
-        var selectionString90 = [u, d, l, r].map(x => "#rect" + x).join(", ");
-        var selectionString45 = [ul, ur, ll, lr].map(x => "#rect" + x).join(", ");
-        
-        d3.selectAll(selectionString90)
-          .interrupt()
-          .style("fill", "rgb(128,0,0")
-          .transition()
-          .duration(500)
-          .style("fill", "rgb(128,128,128)")
-
-        d3.selectAll(selectionString45)
-          .interrupt()
-          .style("fill", "rgb(128,64,64")
-          .transition()
-          .duration(500)
-          .style("fill", "rgb(128,128,128)")
-
-        d3.select("#rect" + i)
-        .interrupt()
-        .style("fill", "rgb(256,0,0")
-        .transition()
-        .duration(500)
-        .style("fill", "rgb(128,128,128)")
-        */
-
-        // d3.selectAll("rect")
-        // .style("fill", function(d, i) {
-          
-        // })
-       
-        // var rx = d3.select("#rect" + i).attr("x");
-        // var ry = d3.select("#rect" + i).attr("y");
-        var rx;
-        var ry; 
-        var mx = d3.mouse(this)[0];
-        var my = d3.mouse(this)[1];
+    
+        var rx; //x position of rect to be set in next d3.selectAll
+        var ry; //y position of rect to be set in next d3.selectAll
+        var mx = d3.mouse(this)[0]; //current mouse x position
+        var my = d3.mouse(this)[1]; //current mouse y position
         
         //console.log("Attrs:", rx, ry)
         
@@ -175,51 +118,22 @@ class PressureMatrix extends Component {
           .transition()
           .duration(250)
           .style("fill", function() {
-            //console.log(i);
+            
             var dist = Math.sqrt(Math.pow((mx - rx),2) + Math.pow((my - ry),2));
-            // if (i % 25 == 0) {
-            //   console.log("Dist ", i, ": ", dist);
-            // }
-            //console.log(Math.floor((1 / dist) * 256));
-            console.log(dist);
-            return "rgb(" + Math.floor(Math.pow((1 -(dist/400)),4) * 256) + ", 0, 0)"
-            //return "rgb(128,0,0)";
+            return "rgb(" +  (128 + Math.floor(Math.pow((1 -(dist/400)),5) * 256)) + ", " + (128 - Math.floor(Math.pow((1 -(dist/400)),5) * 256)) + ", " + (128-Math.floor(Math.pow((1 -(dist/400)),5) * 256)) + ")";
+            
           })
         })
-        //this.handleMousedown(node);
-        //console.log(d,i);
       })//.bind(this));
      
-      .on("mouseup", function(d,i){
-        d3.select(this)
-          .interrupt()
-          .style("fill", "rgb(128,128,128)")
-      })
+     
       .on("mouseleave", function(d,i){
-        /*
-        // var u = i - rowLength;
-        // var d = i + rowLength;
-        // var l = i - 1;
-        // var r = i + 1;
-        // var ul = u - 1;
-        // var ur = u + 1;
-        // var ll = d - 1;
-        // var lr = d + 1;
-
-        // var selectionString = [u, ul, ur, d, l, ll, lr, r, i].map(x => "#rect" + x).join(", ");
-
-        // d3.select(this)
-        //   .interrupt()
-        //   .transition()
-        //   .duration(500)
-        //   .style("fill", "rgb(128,128,128)")
-        */
 
         d3.selectAll("rect")
           .interrupt()
           .transition()
           .duration(250)
-          .style("fill", "rgb(0,0,0)")
+          .style("fill", "rgb(128,128,128)")
     })
      
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Page from './components/Layout/Page.jsx';
 import Matrix from './components/Matrix/Matrix.jsx';
 import D3Matrix from './components/D3Matrix/D3Matrix.jsx';
-import PressureMatrix from './components/PressureMatrix/PressureMatrix.jsx';
+import MouseD3Matrix from './components/MouseD3Matrix/MouseD3Matrix.jsx';
 import './App.css';
 import io from 'socket.io-client';
 
@@ -13,7 +13,7 @@ class App extends Component {
     state = {
      showMatrix: false,
      showD3Matrix: false,
-     showPressureMatrix: false
+     showMouseD3Matrix: false
     }
   
 
@@ -23,7 +23,7 @@ class App extends Component {
        showMatrix: !this.state.showMatrix 
       }));
     this.setState({ showD3Matrix: false });
-    this.setState({ showPressureMatrix: false });
+    this.setState({ showMouseD3Matrix: false });
     socket.emit("demo");
   }
 
@@ -32,13 +32,13 @@ class App extends Component {
       showD3Matrix: !this.state.showD3Matrix 
      }));
     this.setState({ showMatrix: false });
-    this.setState({ showPressureMatrix: false });
+    this.setState({ showMouseD3Matrix: false });
     socket.emit("demo");
   }
 
-  handlePressureClick() {
+  handleMouseClick() {
     this.setState((state) => ({
-      showPressureMatrix: !this.state.showPressureMatrix 
+      showMouseD3Matrix: !this.state.showMouseD3Matrix 
      }));
     this.setState({ showD3Matrix: false });
     this.setState({ showMatrix: false });
@@ -47,15 +47,15 @@ class App extends Component {
   	render() {
         const showMatrix = this.state.showMatrix;
         const showD3Matrix = this.state.showD3Matrix;
-        const showPressureMatrix = this.state.showPressureMatrix;
+        const showMouseD3Matrix = this.state.showMouseD3Matrix;
         let display;
         
         if (showMatrix) {
           display = <Matrix />;
         } else if (showD3Matrix) {
           display = <D3Matrix />;
-        } else if (showPressureMatrix) {
-          display = <PressureMatrix />
+        } else if (showMouseD3Matrix) {
+          display = <MouseD3Matrix />
         }
         else {
           display = <Page />;
@@ -71,8 +71,8 @@ class App extends Component {
             <button onClick={() => this.handleD3MatrixClick()}>
               D3 Demo
             </button>
-            <button onClick={() => this.handlePressureClick()}>
-              Pressure Demo
+            <button onClick={() => this.handleMouseClick()}>
+              Mouse Demo
             </button>
 
       		</div>
