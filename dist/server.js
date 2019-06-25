@@ -39,11 +39,12 @@ var msg = {
 	valuesArray: [],
 	checksum: 0
 }
+
 /////////////////////END OF INITIALIZATION/////////////////////////////////
-function callArduino() {
+
 // Parser used to read data from Arduino, one byte at a time
 parser.on('data', function(buff){
-	
+	//Stub for switching between different demo modes
 	// Push first element into sensorArray
 	var buffAsNumber = buff.readUInt8();
 	sensorArray.push(buffAsNumber);
@@ -97,7 +98,6 @@ parser.on('data', function(buff){
 	}
 		
 });
-} 
 
 // Check if buff is 0xff (255)
 function check(element) {
@@ -186,22 +186,38 @@ function isChecksumEqual(lastByteOfSum, checksum) {
 }
 ///////////////////////////////////////////////////////////////////////////
 
+
 // Sends the array of values (msg) to React
 function sendObject(msg) {
-	console.log("emit msg");
+	//console.log("boolean in sendObject " + emitBoolean);
+	//var shouldEmitMsg = shouldEmit();
+	// while (shouldEmitMsg) {
+	// 	//console.log("reached the while loop");
+	// 	io.emit('Sensor', msg);
+	// }
 	io.emit('Sensor', msg);
 }
 
 
-io.on('connection', function(socket){
+io.on('connect', function(socket){
   console.log('socket io server connected');
-  socket.on("demo", function(){
-	  callArduino()
-	});
-  socket.on('disconnect', function() {
-	io.emit("errorCustom", "There is no server connected");
+  var shouldEmit = false;
+//   socket.on("demo", function(){
+
+		 
+//  	});
+  socket.on('stop', function() {
+	//io.emit("errorCustom", "There is no server connected");
+	console.log("stopping");
+	
   })
 });
+
+// io.on("demo", function(){
+// 	console.log("demo called in server");
+// 	callArduino();
+// });
+
 
 io.on('error', function(){
 	console.log("no socket io connection");

@@ -43,6 +43,9 @@ class App extends Component {
     this.setState({ showD3Matrix: false });
     this.setState({ showMatrix: false });
   }
+  handleStopClick() {
+    socket.emit("stop");
+  }
 
   	render() {
         const showMatrix = this.state.showMatrix;
@@ -73,6 +76,9 @@ class App extends Component {
             </button>
             <button onClick={() => this.handleMouseClick()}>
               Mouse Demo
+            </button>
+            <button onClick={() => this.handleStopClick()}>
+              Stop
             </button>
 
       		</div>
