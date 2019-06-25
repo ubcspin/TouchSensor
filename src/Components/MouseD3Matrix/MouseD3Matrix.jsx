@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import * as d3 from "d3";
 const pressure = require("pressure");
 //import io from 'socket.io-client';
-
-
 //const socket = io('http://localhost:8080');
 
 class PressureMatrix extends Component {
