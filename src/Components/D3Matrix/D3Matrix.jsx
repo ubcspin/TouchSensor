@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
 import io from 'socket.io-client';
+import NoArduino from '../Layout/NoArduino.jsx';
+import ArduinoPage from '../Layout/ArduinoPage.jsx';
 
 const socket = io('http://localhost:8080');
 
@@ -11,12 +13,13 @@ class D3Matrix extends Component {
     this.state = {
       rowLength: 0,
       columnLength: 0,
+      hasConnection: false,
       values: [  
       ]
     };
     this.createGraph = this.createGraph.bind(this);
     this.setValuesToState = this.setValuesToState.bind(this);
-    //this.colorMap = this.colorMap.bind(this);
+    this.checkConnection = this.checkConnection.bind(this);
   }
 
   componentDidMount() {
@@ -26,11 +29,16 @@ class D3Matrix extends Component {
     this.setValuesToState(msg); //Set the state in setValuesToState with values from msg
     
     }.bind(this));
-    socket.on("errorCustom", function(text){
-      console.log(text);
-    }.bind(this));
-    this.createGraph();
-    
+    //console.log("socketIO connection status: " + socket.connected);
+    //this.checkConnection();
+    if(socket.connected) {
+      console.log("socket is connected. creating graph");
+      this.checkConnection(true);
+      this.createGraph();
+    }
+    if(!socket.connected) {
+      this.checkConnection(false);
+    }
   }
 
   //Used to update state as back-end sends data
@@ -39,6 +47,16 @@ class D3Matrix extends Component {
     
   }
 
+  //Check the socket.io connection
+  checkConnection(status) {
+    let hasConnection = this.state.hasConnection;
+    hasConnection = status;
+    this.setState({ hasConnection: hasConnection });
+  }
+  //Create a message on screen when there is no socket.io connection
+  // createMessage() {
+  //   console.log("No socket.io connection");
+  // }
   //Set the state varialbes here
   setValuesToState(msg) {
    
@@ -123,10 +141,26 @@ class D3Matrix extends Component {
   }
 
   render() {
+    let hasConnection = this.state.hasConnection;
+    let svgDisplay;
+    let display;
+    if(!hasConnection) {
+      svgDisplay = "none";
+    } else {
+      svgDisplay = "render";
+    }
+    if(!hasConnection) {
+      display = <NoArduino />;
+    } else {
+      display = <ArduinoPage />;
+    }
       return (
-        <svg ref={node => this.node = node}
-          width="500" height="500">  
-        </svg>
+        <div>
+          {display}
+         <svg ref={node => this.node = node}
+           width="500" height="500" display={svgDisplay}>  
+         </svg>
+        </div>
       )
   };
 }

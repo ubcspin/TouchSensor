@@ -189,12 +189,6 @@ function isChecksumEqual(lastByteOfSum, checksum) {
 
 // Sends the array of values (msg) to React
 function sendObject(msg) {
-	//console.log("boolean in sendObject " + emitBoolean);
-	//var shouldEmitMsg = shouldEmit();
-	// while (shouldEmitMsg) {
-	// 	//console.log("reached the while loop");
-	// 	io.emit('Sensor', msg);
-	// }
 	io.emit('Sensor', msg);
 }
 
