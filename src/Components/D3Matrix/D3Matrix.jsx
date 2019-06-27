@@ -23,12 +23,15 @@ class D3Matrix extends Component {
   }
 
   componentDidMount() {
-    //const socket = io('http://localhost:8080');
+    
+    
+
     socket.on("Sensor", function(msg) {
-   
-    this.setValuesToState(msg); //Set the state in setValuesToState with values from msg
+      //console.log("APPLE");
+      this.setValuesToState(msg); //Set the state in setValuesToState with values from msg
     
     }.bind(this));
+    
     //console.log("socketIO connection status: " + socket.connected);
     //this.checkConnection();
     if(socket.connected) {

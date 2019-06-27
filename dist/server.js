@@ -20,6 +20,13 @@ app.use('/js', express.static(__dirname + '/js'));
 const port = new SerialPort('/dev/cu.usbmodem14301', {
   baudRate: 512000
 });
+var emitBoolean = false;
+port.on("error", function(err) {
+	//io.emit('apple', "hello");
+	console.log("backend error msg: " + err.message);
+	emitBoolean = true;
+	
+});
 
 // This parses the data and logs it, reading 1 byte at a time
 const parser = port.pipe(new ByteLength({length: 1}));
@@ -189,17 +196,28 @@ function isChecksumEqual(lastByteOfSum, checksum) {
 
 // Sends the array of values (msg) to React
 function sendObject(msg) {
+	//console.log("being to send msg");
 	io.emit('Sensor', msg);
 }
 
 
+
 io.on('connect', function(socket){
   console.log('socket io server connected');
-  var shouldEmit = false;
+//   if (emitError) {
+// 	  socket.emit("custom error", "No Arduino error");
+//   }
+if (emitBoolean) {
+	socket.emit("apple", "No Arduino connection");
+}
+	// socket.on("error", function() {
+	// 	socket.emit("custom error", "No Arduino error");
+	// })
 //   socket.on("demo", function(){
 
 		 
 //  	});
+
   socket.on('stop', function() {
 	//io.emit("errorCustom", "There is no server connected");
 	console.log("stopping");
@@ -213,9 +231,9 @@ io.on('connect', function(socket){
 // });
 
 
-io.on('error', function(){
-	console.log("no socket io connection");
-})
+// io.on('error', function(){
+// 	console.log("no socket io connection");
+// })
 
 
 

@@ -16,7 +16,11 @@ class App extends Component {
      showMouseD3Matrix: false
     }
   
-
+    componentDidMount() {
+      socket.on("apple", function(error) {
+        console.log("Error in frontend " + error);
+      }.bind(this));
+    }
 
   handleMatrixClick() {
     this.setState((state) => ({
