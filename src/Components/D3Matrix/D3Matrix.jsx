@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
 import io from 'socket.io-client';
-import NoArduino from '../Layout/NoArduino.jsx';
-import ArduinoPage from '../Layout/ArduinoPage.jsx';
 
 const socket = io('http://localhost:8080');
 
@@ -144,22 +142,9 @@ class D3Matrix extends Component {
   }
 
   render() {
-    let hasConnection = this.state.hasConnection;
-    let svgDisplay;
-    let display;
-    if(!hasConnection) {
-      svgDisplay = "none";
-    } else {
-      svgDisplay = "render";
-    }
-    if(!hasConnection) {
-      display = <NoArduino />;
-    } else {
-      display = <ArduinoPage />;
-    }
       return (
         <div>
-          {display}
+          
          <svg ref={node => this.node = node}
            width="500" height="500" display={svgDisplay}>  
          </svg>

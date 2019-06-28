@@ -208,7 +208,7 @@ io.on('connect', function(socket){
 // 	  socket.emit("custom error", "No Arduino error");
 //   }
 if (emitBoolean) {
-	socket.emit("apple", "No Arduino connection");
+	socket.emit("noArduino", "No Arduino connection");
 }
 	// socket.on("error", function() {
 	// 	socket.emit("custom error", "No Arduino error");
@@ -218,11 +218,6 @@ if (emitBoolean) {
 		 
 //  	});
 
-  socket.on('stop', function() {
-	//io.emit("errorCustom", "There is no server connected");
-	console.log("stopping");
-	
-  })
 });
 
 // io.on("demo", function(){

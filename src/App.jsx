@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Page from './components/Layout/Page.jsx';
+import Header from './components/Layout/Header.jsx';
 import Matrix from './components/Matrix/Matrix.jsx';
 import D3Matrix from './components/D3Matrix/D3Matrix.jsx';
 import MouseD3Matrix from './components/MouseD3Matrix/MouseD3Matrix.jsx';
@@ -17,7 +17,7 @@ class App extends Component {
     }
   
     componentDidMount() {
-      socket.on("apple", function(error) {
+      socket.on("noArduino", function(error) {
         console.log("Error in frontend " + error);
       }.bind(this));
     }
@@ -47,43 +47,30 @@ class App extends Component {
     this.setState({ showD3Matrix: false });
     this.setState({ showMatrix: false });
   }
-  handleStopClick() {
-    socket.emit("stop");
-  }
-
+  
   	render() {
         const showMatrix = this.state.showMatrix;
         const showD3Matrix = this.state.showD3Matrix;
         const showMouseD3Matrix = this.state.showMouseD3Matrix;
-        let display;
+        let leftDisplay;
+        let rightDisplay;
         
         if (showMatrix) {
-          display = <Matrix />;
+          leftDisplay = <Matrix />;
         } else if (showD3Matrix) {
-          display = <D3Matrix />;
+          leftDisplay = <D3Matrix />;
         } else if (showMouseD3Matrix) {
-          display = <MouseD3Matrix />
+          leftDisplay = <MouseD3Matrix />
         }
         else {
-          display = <Page />;
+          leftDisplay = <Header onClick={() => this.handleMouseClick()}/>;
         }
       	return (
           
       		<div className="App">
-           
-           {display}
-            <button onClick={() => this.handleMatrixClick()}>
-              HTML/CSS Demo
-            </button>
-            <button onClick={() => this.handleD3MatrixClick()}>
-              D3 Demo
-            </button>
-            <button onClick={() => this.handleMouseClick()}>
-              Mouse Demo
-            </button>
-            <button onClick={() => this.handleStopClick()}>
-              Stop
-            </button>
+           <Header onClick={() => this.handleMouseClick()} />
+           {leftDisplay}
+            
 
       		</div>
     	)
