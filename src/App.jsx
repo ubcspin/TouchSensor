@@ -4,6 +4,7 @@ import Matrix from './components/Matrix/Matrix.jsx';
 import D3Matrix from './components/D3Matrix/D3Matrix.jsx';
 import MouseD3Matrix from './components/MouseD3Matrix/MouseD3Matrix.jsx';
 import IntroText from './components/Layout/IntroText.jsx';
+import Button from './components/Layout/Button.jsx';
 import './App.css';
 import io from 'socket.io-client';
 
@@ -41,13 +42,23 @@ class App extends Component {
     socket.emit("demo");
   }
 
-  handleMouseClick() {
-    console.log("got to this mouseclick");
-    this.setState((state) => ({
-      showMouseD3Matrix: !this.state.showD3Matrix 
-     }));
-    this.setState({ showMatrix: false });
-    this.setState({ showD3Matrix: false });
+  handleMouseClick(e) {
+    
+    const id = e.target.id;
+    console.log(id)
+    if(id == "htmlcss") {
+      this.setState({ showMatrix: true });
+      this.setState({ showD3Matrix: false });
+      this.setState({ showMouseD3Matrix: false });
+    } else if (id == "d3demo") {
+      this.setState({ showD3Matrix: true });
+      this.setState({ showMatrix: false });
+      this.setState({ showMouseD3Matrix: false });
+    } else if (id == "mouse") {
+      this.setState({ showMouseD3Matrix: true });
+      this.setState({ showMatrix: false });
+      this.setState({ showD3Matrix: false });
+    }
   }
   
   
@@ -71,7 +82,17 @@ class App extends Component {
       	return (
           
       		<div className="App">
-           <Header onClick={() => this.handleMouseClick()} />
+           <Header />
+           <Button id="htmlcss" onClick={event => this.handleMouseClick(event)} title="HTML/CSS Demo" />
+                    
+            <Button id="d3demo" onClick={event => this.handleMouseClick(event)} title="D3 Demo" />
+                
+            <Button id="mouse" onClick={event => this.handleMouseClick(event)} title="Mouse Demo" />
+              <a href="https://github.com/ubcspin/TouchSensor">
+                  <button>
+                    View on Github
+                  </button>
+              </a>
            {leftDisplay}
             
 
