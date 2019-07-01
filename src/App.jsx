@@ -5,6 +5,9 @@ import D3Matrix from './components/D3Matrix/D3Matrix.jsx';
 import MouseD3Matrix from './components/MouseD3Matrix/MouseD3Matrix.jsx';
 import IntroText from './components/Layout/IntroText.jsx';
 import Button from './components/Layout/Button.jsx';
+import MatrixText from './components/Layout/MatrixText.jsx';
+import D3MatrixText from './components/Layout/D3MatrixText.jsx';
+import MouseD3MatrixText from './components/Layout/MouseD3MatrixText.jsx';
 import './App.css';
 import io from 'socket.io-client';
 
@@ -71,10 +74,13 @@ class App extends Component {
         
         if (showMatrix) {
           leftDisplay = <Matrix />;
+          rightDisplay = <MatrixText />
         } else if (showD3Matrix) {
           leftDisplay = <D3Matrix />;
+          rightDisplay = <D3MatrixText />
         } else if (showMouseD3Matrix) {
           leftDisplay = <MouseD3Matrix />
+          rightDisplay = <MouseD3MatrixText />
         }
         else {
           leftDisplay = <IntroText />;
@@ -94,6 +100,7 @@ class App extends Component {
                   </button>
               </a>
            {leftDisplay}
+           {rightDisplay}
             
 
       		</div>
