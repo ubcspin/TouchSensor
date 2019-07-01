@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from './Button.jsx';
 
 class Header extends Component {
     constructor(props) {
@@ -8,15 +9,16 @@ class Header extends Component {
         return (
             <div>
                 <h1>Touch Sensor Visualization</h1>
-                <button onClick={this.props.onClick}>
-                    HTML/CSS Demo
-                </button>
-                <button onClick={this.props.onClick}>
-                    D3 Demo
-                 </button>
-                <button onClick={this.props.onClick}>
-                    Mouse Demo
-                </button>
+                <Button onClick={this.props.onClick} title="HTML/CSS Demo" />
+                    
+                <Button onClick={this.props.onClick} title="D3 Demo" />
+                
+                <Button onClick={this.props.onClick} title="Mouse Demo" />
+                <a href="https://github.com/ubcspin/TouchSensor">
+                    <button>
+                     View on Github
+                    </button>
+                </a>
             </div>
         )
     }

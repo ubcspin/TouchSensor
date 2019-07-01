@@ -3,6 +3,7 @@ import Header from './components/Layout/Header.jsx';
 import Matrix from './components/Matrix/Matrix.jsx';
 import D3Matrix from './components/D3Matrix/D3Matrix.jsx';
 import MouseD3Matrix from './components/MouseD3Matrix/MouseD3Matrix.jsx';
+import IntroText from './components/Layout/IntroText.jsx';
 import './App.css';
 import io from 'socket.io-client';
 
@@ -41,12 +42,14 @@ class App extends Component {
   }
 
   handleMouseClick() {
+    console.log("got to this mouseclick");
     this.setState((state) => ({
-      showMouseD3Matrix: !this.state.showMouseD3Matrix 
+      showMouseD3Matrix: !this.state.showD3Matrix 
      }));
-    this.setState({ showD3Matrix: false });
     this.setState({ showMatrix: false });
+    this.setState({ showD3Matrix: false });
   }
+  
   
   	render() {
         const showMatrix = this.state.showMatrix;
@@ -63,7 +66,7 @@ class App extends Component {
           leftDisplay = <MouseD3Matrix />
         }
         else {
-          leftDisplay = <Header onClick={() => this.handleMouseClick()}/>;
+          leftDisplay = <IntroText />;
         }
       	return (
           
