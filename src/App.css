@@ -6,6 +6,11 @@
 	font-weight: bold;
 }
 
+h1 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 800;
+	font-size: 40px;
+}
 button {
 	background-color: rgb(14, 131, 248);
 	border: none;
@@ -15,9 +20,20 @@ button {
 	padding: 10px 24px;
 	font-size: 16px;
 	display: inline-block;
+	cursor: pointer;
 }
 
 button:hover {
 	background-color: rgb(62, 155, 248);
+}
+
+button:disabled {
+	background-color: rgb(119, 111, 110);
+	opacity: 0.2;
+}
+
+button#github_button {
+	background-color: rgb(236, 233, 233);
+	color: rgb(31, 31, 31);
 }
 

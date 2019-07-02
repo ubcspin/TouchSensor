@@ -12,19 +12,30 @@ import IntroImages from './components/Layout/IntroImages.jsx';
 import './App.css';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:8080');
+const socket = io('http://localhost:8080', {
+  "reconnect": false
+});
 
 class App extends Component {
  
     state = {
-     showMatrix: false,
-     showD3Matrix: false,
-     showMouseD3Matrix: false
+      disableButton: false,
+      showMatrix: false,
+      showD3Matrix: false,
+      showMouseD3Matrix: false
     }
   
     componentDidMount() {
       socket.on("noArduino", function(error) {
         console.log("Error in frontend " + error);
+        this.setState({ disableButton: true })
+      }.bind(this));
+      console.log("The socket.io server is connected? :" + socket.connected);
+      if(!socket.connected) {
+        this.setState({ disableButton: true });
+      }
+      socket.on("connect", function() {
+        this.setState({ disableButton: false });
       }.bind(this));
     }
 
@@ -66,23 +77,23 @@ class App extends Component {
           rightDisplay = <MouseD3MatrixText />
         }
         else {
-          leftDisplay = <IntroText />;
-          rightDisplay = <IntroImages />
+          leftDisplay = <IntroImages />;
+          rightDisplay = <IntroText />
         }
       	return (
           
       		<div className="App">
            <Header />
-           <Button id="htmlcss" onClick={event => this.handleMouseClick(event)} title="HTML/CSS Demo" />
+           <Button id="htmlcss" disabled={this.state.disableButton} onClick={event => this.handleMouseClick(event)} title="HTML/CSS Demo" />
                     
-            <Button id="d3demo" onClick={event => this.handleMouseClick(event)} title="D3 Demo" />
+           <Button id="d3demo" disabled={this.state.disableButton} onClick={event => this.handleMouseClick(event)} title="D3 Demo" />
                 
-            <Button id="mouse" onClick={event => this.handleMouseClick(event)} title="Mouse Demo" />
-              <a href="https://github.com/ubcspin/TouchSensor">
-                  <button>
-                    View on Github
-                  </button>
-              </a>
+           <Button id="mouse" onClick={event => this.handleMouseClick(event)} title="Mouse Demo" />
+           <a href="https://github.com/ubcspin/TouchSensor">
+            <button id="github_button">
+              View on Github
+            </button>
+           </a>
            {leftDisplay}
            {rightDisplay}
             

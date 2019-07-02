@@ -146,7 +146,7 @@ class D3Matrix extends Component {
         <div>
           
          <svg ref={node => this.node = node}
-           width="500" height="500" display={svgDisplay}>  
+           width="500" height="500" >  
          </svg>
         </div>
       )
