@@ -8,6 +8,7 @@ import Button from './components/Layout/Button.jsx';
 import MatrixText from './components/Layout/MatrixText.jsx';
 import D3MatrixText from './components/Layout/D3MatrixText.jsx';
 import MouseD3MatrixText from './components/Layout/MouseD3MatrixText.jsx';
+import IntroImages from './components/Layout/IntroImages.jsx';
 import './App.css';
 import io from 'socket.io-client';
 
@@ -27,27 +28,9 @@ class App extends Component {
       }.bind(this));
     }
 
-  handleMatrixClick() {
-    this.setState((state) => ({
-       showMatrix: !this.state.showMatrix 
-      }));
-    this.setState({ showD3Matrix: false });
-    this.setState({ showMouseD3Matrix: false });
-    socket.emit("demo");
-  }
-
-  handleD3MatrixClick() {
-    this.setState((state) => ({
-      showD3Matrix: !this.state.showD3Matrix 
-     }));
-    this.setState({ showMatrix: false });
-    this.setState({ showMouseD3Matrix: false });
-    socket.emit("demo");
-  }
-
-  handleMouseClick(e) {
+  handleMouseClick(event) {
     
-    const id = e.target.id;
+    const id = event.target.id;
     console.log(id)
     if(id == "htmlcss") {
       this.setState({ showMatrix: true });
@@ -84,6 +67,7 @@ class App extends Component {
         }
         else {
           leftDisplay = <IntroText />;
+          rightDisplay = <IntroImages />
         }
       	return (
           
