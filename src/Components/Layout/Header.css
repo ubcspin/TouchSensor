@@ -1,0 +1,30 @@
+.title-header {
+    height: 150px;
+    width: 100%;
+}
+
+.title-header #project-title {
+    position: absolute;
+    left: 10px;
+    top: 4%;
+    padding-top: 10px;
+    height: 80px;
+    width: 65%;
+    padding-left: 60px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 800;
+    font-size: 40px;
+    text-align: left;
+    cursor: pointer;
+	
+}
+
+.title-header #github-button {
+    position: absolute;
+    top: 13%;
+    right: 5%;
+	background-color: rgb(236, 233, 233);
+	color: rgb(31, 31, 31);
+	float: right;
+	width: 20%;
+}

@@ -20,6 +20,7 @@ class App extends Component {
  
     state = {
       disableButton: false,
+      showHome: true,
       showMatrix: false,
       showD3Matrix: false,
       showMouseD3Matrix: false
@@ -39,10 +40,10 @@ class App extends Component {
       }.bind(this));
     }
 
-  handleMouseClick(event) {
+  handleButtonClick(event) {
     
     const id = event.target.id;
-    console.log(id)
+    console.log(id);
     if(id == "htmlcss") {
       this.setState({ showMatrix: true });
       this.setState({ showD3Matrix: false });
@@ -55,7 +56,12 @@ class App extends Component {
       this.setState({ showMouseD3Matrix: true });
       this.setState({ showMatrix: false });
       this.setState({ showD3Matrix: false });
-    }
+    } else if (id == "project-title") {
+      this.setState({ showHome: true });
+      this.setState({ showMatrix: false });
+      this.setState({ showD3Matrix: false });
+      this.setState({ showMouseD3Matrix: false });
+    } 
   }
   
   
@@ -63,6 +69,7 @@ class App extends Component {
         const showMatrix = this.state.showMatrix;
         const showD3Matrix = this.state.showD3Matrix;
         const showMouseD3Matrix = this.state.showMouseD3Matrix;
+        const showHome = this.state.showHome;
         let leftDisplay;
         let rightDisplay;
         
@@ -76,26 +83,25 @@ class App extends Component {
           leftDisplay = <MouseD3Matrix />
           rightDisplay = <MouseD3MatrixText />
         }
-        else {
+        else if (showHome) {
           leftDisplay = <IntroImages />;
           rightDisplay = <IntroText />
         }
       	return (
           
       		<div className="App">
-           <Header />
-           <Button id="htmlcss" disabled={this.state.disableButton} onClick={event => this.handleMouseClick(event)} title="HTML/CSS Demo" />
+           <Header onClick={event => this.handleButtonClick(event)} />
+           <div id="buttons">
+            <Button id="htmlcss" disabled={this.state.disableButton} onClick={event => this.handleButtonClick(event)} title="HTML/CSS Demo" />
                     
-           <Button id="d3demo" disabled={this.state.disableButton} onClick={event => this.handleMouseClick(event)} title="D3 Demo" />
+            <Button id="d3demo" disabled={this.state.disableButton} onClick={event => this.handleButtonClick(event)} title="D3 Demo" />
                 
-           <Button id="mouse" onClick={event => this.handleMouseClick(event)} title="Mouse Demo" />
-           <a href="https://github.com/ubcspin/TouchSensor">
-            <button id="github_button">
-              View on Github
-            </button>
-           </a>
+            <Button id="mouse" onClick={event => this.handleButtonClick(event)} title="Mouse Demo" />
+           </div>
+           <div id ="display-wrap">
            {leftDisplay}
            {rightDisplay}
+           </div>
             
 
       		</div>

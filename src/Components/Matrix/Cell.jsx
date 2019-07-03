@@ -17,7 +17,7 @@ class Cell extends Component {
 	render() {
 		return(
 
-			<div className={"Cell0"} style={{backgroundColor: "rgb("+this.props.pressed+",255,255)"}}>
+			<div className={"Cell0"} style={{backgroundColor: "rgb("+ (128+ (255 - this.props.pressed)) +"," + (128 - (255 - this.props.pressed)) +", "+ (128 - (255 - this.props.pressed)) + ")"}}>
 				<p>{this.props.pressed}</p>
 			</div>
 			)

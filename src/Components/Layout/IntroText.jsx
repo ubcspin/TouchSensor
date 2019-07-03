@@ -7,7 +7,39 @@ class IntroText extends Component {
     render() {
         return (
             <div>
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <div>Left</div>
+
+                    <div>
+                        <p>Right 1</p>
+                        <p>Right 2</p>
+                    </div>
+
+                </div>
                 <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                <p>Introduction Text</p>
+                
             </div>
         )
     }
