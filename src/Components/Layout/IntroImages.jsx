@@ -7,7 +7,7 @@ class IntroImages extends Component {
     };
     render() {
         return (
-            <div>
+            <div id="introduction-images">
                 <h1>Images for intro will be placed here</h1>
                 
             </div>

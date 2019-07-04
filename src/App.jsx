@@ -84,19 +84,19 @@ class App extends Component {
           rightDisplay = <MouseD3MatrixText />
         }
         else if (showHome) {
-          leftDisplay = <IntroImages />;
-          rightDisplay = <IntroText />
+          leftDisplay = <IntroText />;
+          rightDisplay = <IntroImages />
         }
       	return (
           
       		<div className="App">
            <Header onClick={event => this.handleButtonClick(event)} />
            <div id="buttons">
-            <Button id="htmlcss" disabled={this.state.disableButton} onClick={event => this.handleButtonClick(event)} title="HTML/CSS Demo" />
+            <Button id="htmlcss" disabled={this.state.disableButton} onClick={event => this.handleButtonClick(event)} title="With Values" />
                     
-            <Button id="d3demo" disabled={this.state.disableButton} onClick={event => this.handleButtonClick(event)} title="D3 Demo" />
+            <Button id="d3demo" disabled={this.state.disableButton} onClick={event => this.handleButtonClick(event)} title="Without Values" />
                 
-            <Button id="mouse" onClick={event => this.handleButtonClick(event)} title="Mouse Demo" />
+            <Button id="mouse" onClick={event => this.handleButtonClick(event)} title="Mouse Simulation" />
            </div>
            <div id ="display-wrap">
            {leftDisplay}
