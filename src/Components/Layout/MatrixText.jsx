@@ -7,7 +7,7 @@ class MatrixText extends Component {
     };
     render() {
         return (
-            <div>
+            <div className="demo-text">
                 <h1>Text for HTML Matrix</h1>
                 
             </div>

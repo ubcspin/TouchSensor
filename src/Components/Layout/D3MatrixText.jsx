@@ -7,7 +7,7 @@ class D3MatrixText extends Component {
     };
     render() {
         return (
-            <div>
+            <div className="demo-text">
                 <h1>Description for D3 Matrix</h1>
                 
             </div>

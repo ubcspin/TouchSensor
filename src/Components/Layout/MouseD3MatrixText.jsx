@@ -7,8 +7,9 @@ class MouseD3MatrixText extends Component {
     };
     render() {
         return (
-            <div>
-                <h1>Description for Mouse Demo</h1>
+            <div className="demo-text">
+                <h3>Place your mouse over the visualization</h3>
+                <p class="topic">This simulates how the visualization would behave if a user interacts with a physical Touch Sensor</p>
                 
             </div>
         )

@@ -143,7 +143,7 @@ class D3Matrix extends Component {
 
   render() {
       return (
-        <div>
+        <div className="visualization">
           
          <svg ref={node => this.node = node}
            width="500" height="500" >  

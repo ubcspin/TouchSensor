@@ -98,8 +98,8 @@ class Matrix extends Component {
     render() {
       
       return (
-         <div className="test">
-          <h2>Displaying Matrix Demo</h2>
+         <div className="visualization">
+       
             {this.createDivision()}
 
           </div>

@@ -138,7 +138,7 @@ class PressureMatrix extends Component {
   
   render() {
       return (
-        <div>
+        <div className="visualization">
           <svg ref={node => this.node = node}
            width="400" height="400"> 
             
