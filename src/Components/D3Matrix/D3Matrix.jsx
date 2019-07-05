@@ -142,13 +142,22 @@ class D3Matrix extends Component {
   }
 
   render() {
+    let row = this.state.rowLength;
+    let column = this.state.columnLength;
       return (
-        <div className="visualization">
+        <div className="display-wrap">
+          <div className="visualization">
           
-         <svg ref={node => this.node = node}
-           width="500" height="500" >  
-         </svg>
+          <svg ref={node => this.node = node}
+             width="400" height="400" >  
+          </svg>
+         </div>
+        <div className="demo-text">
+          <h3>A visualization of your {row} x {column} Touch Sensor</h3>
+        
         </div>
+    </div>
+        
       )
   };
 }

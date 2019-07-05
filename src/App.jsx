@@ -5,9 +5,6 @@ import D3Matrix from './components/D3Matrix/D3Matrix.jsx';
 import MouseD3Matrix from './components/MouseD3Matrix/MouseD3Matrix.jsx';
 import IntroText from './components/Layout/IntroText.jsx';
 import Button from './components/Layout/Button.jsx';
-import MatrixText from './components/Layout/MatrixText.jsx';
-import D3MatrixText from './components/Layout/D3MatrixText.jsx';
-import MouseD3MatrixText from './components/Layout/MouseD3MatrixText.jsx';
 import IntroImages from './components/Layout/IntroImages.jsx';
 import './App.css';
 import io from 'socket.io-client';
@@ -48,14 +45,17 @@ class App extends Component {
       this.setState({ showMatrix: true });
       this.setState({ showD3Matrix: false });
       this.setState({ showMouseD3Matrix: false });
+      this.setState({ showHome: false });
     } else if (id == "d3demo") {
       this.setState({ showD3Matrix: true });
       this.setState({ showMatrix: false });
       this.setState({ showMouseD3Matrix: false });
+      this.setState({ showHome: false });
     } else if (id == "mouse") {
       this.setState({ showMouseD3Matrix: true });
       this.setState({ showMatrix: false });
       this.setState({ showD3Matrix: false });
+      this.setState({ showHome: false });
     } else if (id == "project-title") {
       this.setState({ showHome: true });
       this.setState({ showMatrix: false });
@@ -70,22 +70,22 @@ class App extends Component {
         const showD3Matrix = this.state.showD3Matrix;
         const showMouseD3Matrix = this.state.showMouseD3Matrix;
         const showHome = this.state.showHome;
-        let leftDisplay;
-        let rightDisplay;
+        let display;
+        //let rightDisplay;
         
         if (showMatrix) {
-          leftDisplay = <Matrix />;
-          rightDisplay = <MatrixText />
+          display = <Matrix />;
+          //rightDisplay = <MatrixText />
         } else if (showD3Matrix) {
-          leftDisplay = <D3Matrix />;
-          rightDisplay = <D3MatrixText />
+          display = <D3Matrix />;
+          //rightDisplay = <D3MatrixText />
         } else if (showMouseD3Matrix) {
-          leftDisplay = <MouseD3Matrix />
-          rightDisplay = <MouseD3MatrixText />
+          display = <MouseD3Matrix />
+          //rightDisplay = <MouseD3MatrixText />
         }
         else if (showHome) {
-          leftDisplay = <IntroText />;
-          rightDisplay = <IntroImages />
+          display = <IntroText />;
+          //rightDisplay = <IntroImages />
         }
       	return (
           
@@ -98,10 +98,10 @@ class App extends Component {
                 
             <Button id="mouse" onClick={event => this.handleButtonClick(event)} title="Mouse Simulation" />
            </div>
-           <div id ="display-wrap">
-           {leftDisplay}
-           {rightDisplay}
-           </div>
+           
+           {display}
+           
+           
             
 
       		</div>

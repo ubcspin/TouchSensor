@@ -138,11 +138,17 @@ class PressureMatrix extends Component {
   
   render() {
       return (
-        <div className="visualization">
-          <svg ref={node => this.node = node}
+        <div className="display-wrap">
+         <div className="visualization">
+           <svg ref={node => this.node = node}
            width="400" height="400"> 
             
-          </svg>
+           </svg>
+         </div>
+         <div className="demo-text">
+          <h3>Place your mouse over the visualization</h3>
+            <p class="topic">This simulates how the visualization would behave if a user interacts with a physical Touch Sensor</p>
+          </div>
         </div>
       )
   };

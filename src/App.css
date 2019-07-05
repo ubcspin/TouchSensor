@@ -7,7 +7,9 @@
 }
 
 
-#display-wrap {
+.display-wrap {
+	display: flex;
+	flex-direction: row;
 	overflow-y: scroll;
 }
 
@@ -39,11 +41,6 @@ button:disabled {
 	background-color: rgb(119, 111, 110);
 	opacity: 0.2;
 	cursor: not-allowed;
-}
-
-#display-wrap {
-	display: flex;
-	flex-direction: row;
 }
 
 #introduction-text {
