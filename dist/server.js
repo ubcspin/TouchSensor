@@ -22,7 +22,7 @@ const port = new SerialPort('/dev/cu.usbmodem14301', {
 });
 var emitBoolean = false;
 port.on("error", function(err) {
-	//io.emit('apple', "hello");
+	
 	console.log("backend error msg: " + err.message);
 	emitBoolean = true;
 	
@@ -204,32 +204,12 @@ function sendObject(msg) {
 
 io.on('connect', function(socket){
   console.log('socket io server connected');
-//   if (emitError) {
-// 	  socket.emit("custom error", "No Arduino error");
-//   }
-if (emitBoolean) {
-	socket.emit("noArduino", "No Arduino connection");
-}
-	// socket.on("error", function() {
-	// 	socket.emit("custom error", "No Arduino error");
-	// })
-//   socket.on("demo", function(){
 
-		 
-//  	});
+	if (emitBoolean) {
+		socket.emit("noArduino", "No Arduino connection");
+	}
 
 });
-
-// io.on("demo", function(){
-// 	console.log("demo called in server");
-// 	callArduino();
-// });
-
-
-// io.on('error', function(){
-// 	console.log("no socket io connection");
-// })
-
 
 
 http.listen(8080, function(){

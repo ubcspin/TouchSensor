@@ -25,7 +25,6 @@ class D3Matrix extends Component {
     
 
     socket.on("Sensor", function(msg) {
-      //console.log("APPLE");
       this.setValuesToState(msg); //Set the state in setValuesToState with values from msg
     
     }.bind(this));
@@ -54,10 +53,7 @@ class D3Matrix extends Component {
     hasConnection = status;
     this.setState({ hasConnection: hasConnection });
   }
-  //Create a message on screen when there is no socket.io connection
-  // createMessage() {
-  //   console.log("No socket.io connection");
-  // }
+
   //Set the state varialbes here
   setValuesToState(msg) {
    

@@ -71,21 +71,20 @@ class App extends Component {
         const showMouseD3Matrix = this.state.showMouseD3Matrix;
         const showHome = this.state.showHome;
         let display;
-        //let rightDisplay;
         
         if (showMatrix) {
           display = <Matrix />;
-          //rightDisplay = <MatrixText />
+          
         } else if (showD3Matrix) {
           display = <D3Matrix />;
-          //rightDisplay = <D3MatrixText />
+          
         } else if (showMouseD3Matrix) {
           display = <MouseD3Matrix />
-          //rightDisplay = <MouseD3MatrixText />
+          
         }
         else if (showHome) {
           display = <IntroText />;
-          //rightDisplay = <IntroImages />
+         
         }
       	return (
           
@@ -100,10 +99,7 @@ class App extends Component {
            </div>
            
            {display}
-           
-           
-            
-
+          
       		</div>
     	)
   	};

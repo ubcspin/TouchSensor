@@ -16,9 +16,7 @@ class Matrix extends Component {
 }
 
   componentDidMount() {
-    //const socket = io('http://localhost:8080');
     socket.on('Sensor', function(msg) {
-      //console.log(msg);
       
       const matrixValues = this.state.matrixValues;
      
