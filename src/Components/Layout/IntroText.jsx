@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './IntroText.css'
+//import DemoImage from '../../images/DemoImage.jpg';
+import TouchSensorVideo from '../../videos/TouchSensorVideo.mp4';
 
 class IntroText extends Component {
     constructor(props) {
@@ -7,30 +9,37 @@ class IntroText extends Component {
     };
     render() {
         return (
-            <div id="introduction-text">
-                <h2>The Touch Sensor Visualization is a tool made with React and D3 to create 
-                    a 2D represenation of various sensors.
-                </h2>
-                <h3>How do I use this tool?</h3>
-                <p class="topic">I am viewing online</p>
-                <ul>
-                    <li>
-                        <p>Select the <em>Mouse Demo</em> to view a pointer-based simulation
-                            of the demo.
-                        </p>
-                    </li>
-                </ul>
-                <p class="topic">I have an Arduino-based Touch Sensor connected</p>
-                <ul>
-                    <li>
-                        <p>The demo will detect that an Arduino is connected.</p>
-                    </li>
-                    <li>
-                        <p>The <em>HTML/CSS</em> and <em>D3 Demo</em> will become selectable,
-                        and a real-time visualization of the Touch Sensor will display.
-                        </p>
-                    </li>
-                </ul>
+            <div id="entire-introduction">
+                <div class="introduction-top">
+                    <div className="introduction-text">
+                        <h2>The Touch Sensor Visualization is a tool made with React and D3 to create 
+                            a 2D represenation of various sensors.
+                        </h2>
+                        <h3>How do I use this tool?</h3>
+                        <p class="topic">I am viewing online</p>
+                        <ul>
+                         <li>
+                             <p>Select the <em>Mouse Demo</em> to view a pointer-based simulation
+                                of the demo.
+                            </p>
+                         </li>
+                        </ul>
+                        <p class="topic">I have an Arduino-based Touch Sensor connected</p>
+                        <ul>
+                            <li>
+                                <p>The demo will detect that an Arduino is connected.</p>
+                            </li>
+                            <li>
+                                <p>The <em>HTML/CSS</em> and <em>D3 Demo</em> will become selectable,
+                                   and a real-time visualization of the Touch Sensor will display.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>{/*close div for introduction-text*/}
+                    <video id="intro-video" autoPlay loop>
+                     <source src={TouchSensorVideo} type="video/mp4" />
+                    </video>
+                </div>{/*close div for introduction-top*/}
                 <h3>More about this demo</h3>
                 <p class="topic">Using a different Arduino-based Touch Sensor</p>
                 <ul>
@@ -54,7 +63,8 @@ class IntroText extends Component {
                     </li>
                 </ul>
                 
-            </div>
+            
+        </div>
         )
     }
 };

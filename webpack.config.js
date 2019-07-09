@@ -23,6 +23,14 @@ module.exports = {
         ]
       },
       {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=8192'
+      },
+      {
+        test: /\.mp4$/,
+        use: 'file-loader?name=videos/[name].[ext]'
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: "babel-loader"
