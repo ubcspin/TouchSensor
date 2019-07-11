@@ -1,6 +1,9 @@
 .title-header {
-    height: 150px;
-    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-height: 120px;
+    
 }
 
 .title-header #project-title {
@@ -8,7 +11,7 @@
     left: 10px;
     top: 4%;
     height: 80px;
-    width: 65%;
+    
     padding-left: 10%;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 800;
@@ -19,11 +22,16 @@
 }
 
 .title-header #github-button {
+    
     position: absolute;
+    border-radius: 4%;
     top: 13%;
     right: 5%;
 	background-color: rgb(236, 233, 233);
 	color: rgb(31, 31, 31);
-	float: right;
-	width: 20%;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    padding: 10px 24px;
+    
 }

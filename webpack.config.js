@@ -24,7 +24,12 @@ module.exports = {
       },
       {
         test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=8192'
+        use: [{
+        loader: 'file-loader',
+        options: {
+          name: 'images/[name].[ext]',
+        }
+      }]
       },
       {
         test: /\.mp4$/,

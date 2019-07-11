@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
-const pressure = require("pressure");
 
 class PressureMatrix extends Component {
   constructor(props) {
