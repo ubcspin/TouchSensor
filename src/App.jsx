@@ -89,15 +89,17 @@ class App extends Component {
       	return (
           
       		<div className="App">
-           <Header onClick={event => this.handleButtonClick(event)} />
-           <div id="buttons">
-            <Button id="htmlcss" disabled={this.state.disableButton} onClick={event => this.handleButtonClick(event)} title="With Values" />
+            <div className="header-wrap">
+              <Header onClick={event => this.handleButtonClick(event)} />
+              <div id="buttons">
+          
+                <Button id="htmlcss" disabled={this.state.disableButton} onClick={event => this.handleButtonClick(event)} title="With Values" />
                     
-            <Button id="d3demo" disabled={this.state.disableButton} onClick={event => this.handleButtonClick(event)} title="Without Values" />
+                <Button id="d3demo" disabled={this.state.disableButton} onClick={event => this.handleButtonClick(event)} title="Without Values" />
                 
-            <Button id="mouse" onClick={event => this.handleButtonClick(event)} title="Mouse Simulation" />
+                <Button id="mouse" onClick={event => this.handleButtonClick(event)} title="Mouse Simulation" />
+             </div>
            </div>
-           
            {display}
           
       		</div>

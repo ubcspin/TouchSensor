@@ -11,7 +11,7 @@ class IntroText extends Component {
         return (
             <div id="entire-introduction">
                 <div className="introduction-top">
-                    <div className="introduction-text">
+                    <div className="video-text">
                         <h2>The Touch Sensor Visualization is a tool made with React and D3 to create 
                             a 2D represenation of various sensors.
                         </h2>
@@ -19,7 +19,7 @@ class IntroText extends Component {
                         <p className="topic">I am viewing online</p>
                         <ul>
                          <li>
-                             <p>Select the <em>Mouse Demo</em> to view a pointer-based simulation
+                             <p className="topic">Select the <em>Mouse Demo</em> to view a pointer-based simulation
                                 of the demo.
                             </p>
                          </li>
@@ -27,10 +27,10 @@ class IntroText extends Component {
                         <p className="topic">I have an Arduino-based Touch Sensor connected</p>
                         <ul>
                             <li>
-                                <p>The demo will detect that an Arduino is connected.</p>
+                                <p className="topic">The demo will detect that an Arduino is connected.</p>
                             </li>
                             <li>
-                                <p>The <em>HTML/CSS</em> and <em>D3 Demo</em> will become selectable,
+                                <p className="topic">The <em>With Values</em> and <em>Without Values</em> will become selectable,
                                    and a real-time visualization of the Touch Sensor will display.
                                 </p>
                             </li>
@@ -46,20 +46,20 @@ class IntroText extends Component {
                 <p className="topic">Using a different Arduino-based Touch Sensor</p>
                 <ul>
                     <li>
-                        <p>Changing the number of <code>ground</code> and <code>power</code> pins and their placements allow for variously sized sensors to be used
+                        <p className="topic">Changing the number of <code>ground</code> and <code>power</code> pins and their placements allow for variously sized sensors to be used
                         with the Aruino code.</p>
                     </li>
                 </ul>
                 <p className="topic">Aruino code functionality</p>
                 <ul>
                     <li>
-                        <p>The information sent from the Arduino includes: </p>
+                        <p className="topic">The information sent from the Arduino includes: </p>
                         <ol>
                             <li>
-                                <p>The size of the Touch Sensor.</p>
+                                <p className ="topic">The size of the Touch Sensor.</p>
                             </li>
                             <li>
-                                <p>The touch input on the sensor.</p>
+                                <p className="topic">The touch input on the sensor.</p>
                             </li>
                         </ol>
                     </li>
