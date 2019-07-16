@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './IntroText.css'
 import ArduinoImage from '../../images/ArduinoImage.jpg';
+import HardwareImage from '../../images/HardwareImage.jpg';
 import TouchSensorVideo from '../../videos/TouchSensorVideo.mp4';
 
 class IntroText extends Component {
@@ -10,31 +11,18 @@ class IntroText extends Component {
     render() {
         return (
             <div id="entire-introduction">
-                <div className="introduction-top">
+                <div className="video-top">
                     <div className="video-text">
-                        <h2>The Touch Sensor Visualization is a tool made with React and D3 to create 
-                            a 2D represenation of various sensors.
-                        </h2>
-                        <h3>How do I use this tool?</h3>
-                        <p className="topic">I am viewing online</p>
-                        <ul>
-                         <li>
-                             <p className="topic">Select the <em>Mouse Demo</em> to view a pointer-based simulation
-                                of the demo.
-                            </p>
-                         </li>
-                        </ul>
-                        <p className="topic">I have an Arduino-based Touch Sensor connected</p>
-                        <ul>
-                            <li>
-                                <p className="topic">The demo will detect that an Arduino is connected.</p>
-                            </li>
-                            <li>
-                                <p className="topic">The <em>With Values</em> and <em>Without Values</em> will become selectable,
-                                   and a real-time visualization of the Touch Sensor will display.
-                                </p>
-                            </li>
-                        </ul>
+                       <p className="intro-text">Variously sized sensors are needed to fit the sizes and shapes of different robots. 
+                       </p>
+                       <p className="intro-text">
+                          To adapt to different surface areas of touch sensors, our custom Arduino functionality 
+                          passes the necessary data to visualize touch inputs.
+                       </p>
+                       <p className="intro-text">
+                          A web-based visualization was created to render real-time touch inputs. 
+                          The position and depth of a user’s touch is sensed, and displayed in a two-dimensional layout.
+                       </p>
                     </div>{/*close div for introduction-text*/}
                     <video id="intro-video" autoPlay muted loop>
                      <source src={TouchSensorVideo} type="video/mp4" />
@@ -42,31 +30,23 @@ class IntroText extends Component {
                 </div>{/*close div for introduction-top*/}
                 <div className="introduction-top">
                     <div className="introduction-text">
-                <h3>More about this demo</h3>
-                <p className="topic">Using a different Arduino-based Touch Sensor</p>
-                <ul>
-                    <li>
-                        <p className="topic">Changing the number of <code>ground</code> and <code>power</code> pins and their placements allow for variously sized sensors to be used
-                        with the Aruino code.</p>
-                    </li>
-                </ul>
-                <p className="topic">Aruino code functionality</p>
-                <ul>
-                    <li>
-                        <p className="topic">The information sent from the Arduino includes: </p>
-                        <ol>
-                            <li>
-                                <p className ="topic">The size of the Touch Sensor.</p>
-                            </li>
-                            <li>
-                                <p className="topic">The touch input on the sensor.</p>
-                            </li>
-                        </ol>
-                    </li>
-                </ul>
+                <h3>Sensors made with Arduino</h3>
+                <p>The visualization supports variously sized sensors connected with Arduino. 
+                                     The size and input of the sensors are sent to the visualization to be rendered.</p>
+                
+                
                 </div> {/*close div for introduction-text*/}
                 <img src={ArduinoImage} alt="Aruino" className="intro-image" />
             </div> {/*close div for introduction-top*/}
+            <div className="introduction-top">
+                <div className="introduction-text">
+                    <h3>React and D3</h3>
+                    <p>Reponsive rendering of touch input is achieved by using React and D3.
+                                         React ensures a responsive web-based visualization interface.
+                                         Real-time rendering of touch input is rendered with D3.</p>
+                </div>
+                <img src={HardwareImage} alt="Demo Hardware" className="intro-image" />
+            </div>
         </div>
         )
     }
