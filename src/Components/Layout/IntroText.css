@@ -12,27 +12,27 @@ h2 {
 
 h3 {
     font-family: 'Roboto', sans-serif;
-    
+    font-weight: 500;
     font-size: 20px;
     text-align: left;
     
 }
 .topic {
     font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 20px;
+    font-weight: 100;
+    font-size: 23px;
     text-align: left;
 }
 .instruction {
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
     font-size: 18px;
     text-align: left;
 }
 p {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
-    font-size: 20px;
+    font-size: 18px;
     text-align: left;
 }
 .intro-text {
@@ -88,7 +88,7 @@ ul {
 .intro-image {
     float: right;
     max-width: 38%;
-    max-height: 38%;
+    max-height: 400px;
     margin-top: 2%;
     margin-left: 2%;
     margin-right: 80px;
@@ -97,7 +97,7 @@ ul {
 }
 .introduction-text {
     min-width: 200px;
-    max-width: 410px;
+    max-width: 480px;
     float: left;
     position: absolute;
     left: 0;
@@ -107,4 +107,22 @@ ul {
     padding-left: 80px;
     
     
+}
+
+pre {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 10px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 480px;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: normal;
+    text-align: left;
 }
