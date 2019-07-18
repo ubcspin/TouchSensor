@@ -3,6 +3,7 @@ import './IntroText.css'
 import SensorSizes from '../../images/sensorScales.jpg';
 import HardwareImage from '../../images/HardwareImage.jpg';
 import TouchSensorVideo from '../../videos/TouchSensorVideo.mp4';
+import Demo from '../../images/Demo.jpg';
 
 class IntroText extends Component {
     constructor(props) {
@@ -41,19 +42,29 @@ class IntroText extends Component {
                 </div>
                 <div className="introduction-top">
                     <div className="introduction-text">
-                <h3>Sensors made with Arduino</h3>
-                <p>The visualization supports variously sized sensors connected with Arduino. 
-                                     The size and input of the sensors are sent to the visualization to be rendered.</p>
+                <h3>Arduino Functionality to Support Touch Sensors</h3>
+                <p>The visualization receives frames of information from an Arduino output.
+                   These frames include a header for synchronization, the values of touch input, and a checksum to confirm correct values.</p>
+                <p>The header includes: </p>
+                <ul>
+                    <li><p>A string of values to synchronize the beginning of the frame.</p></li>
+                    <li><p>The size of the Touch Sensor.</p></li>
+                    <li><p>A timestamp that counts the time since the Touch Sensor began to sense input.</p></li>
+                </ul>
+<div className="code-text">
 <pre>{
-`for(int powerPinIndex = 0; powerPinIndex < power; powerPinIndex++){
-    for(int groundPinIndex = 0; groundPinIndex < ground; groundPinIndex++){
-      presUB = (byte)(values[powerPinIndex][groundPinIndex] >> 8);    // higher eight bits
-      presLB = (byte)(values[powerPinIndex][groundPinIndex]);       // lower eight bits
-      pressureBuffer[10+(powerPinIndex*2*ground)+(groundPinIndex*2)] = presLB;
-      pressureBuffer[10+(powerPinIndex*2*ground)+(groundPinIndex*2)+1] = presUB;
-    }
-}`}</pre>
-                
+`pressureBuffer[0] = 0xff;
+pressureBuffer[1] = 0xff;
+pressureBuffer[2] = 0xff;
+pressureBuffer[3] = 0xff;
+`}</pre>
+<pre>{
+`widthUB = (byte)(width >> 8);
+widthLB = (byte)(width);
+pressureBuffer[4] = widthLB; 
+pressureBuffer[5] = widthUB;
+`}</pre>
+</div>               
                 </div> {/*close div for introduction-text*/}
                 <img src={SensorSizes} alt="Sensor Sizes" className="intro-image" />
             </div> {/*close div for introduction-top*/}
@@ -64,7 +75,7 @@ class IntroText extends Component {
                                          React ensures a responsive web-based visualization interface.
                                          Real-time rendering of touch input is rendered with D3.</p>
                 </div>
-                <img src={HardwareImage} alt="Demo Hardware" className="intro-image" />
+                <img src={Demo} alt="Visualization Demo" className="intro-image" />
             </div>
         </div>
         )
