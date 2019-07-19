@@ -31,11 +31,6 @@ class IntroText extends Component {
                 </div>{/*close div for introduction-top*/}
                 <div className="introduction-top">
                     <div className="introduction-text">
-                        <h3>PLACEHOLDER HERE FOR THE FLOW CHART OF THE PROJECT</h3>
-                    </div>
-                </div>
-                <div className="introduction-top">
-                    <div className="introduction-text">
                 <h3>ARDUINO FUNCTIONALITY TO SUPPORT TOUCH SENSORS</h3>
                 <p>The visualization receives frames of information from an Arduino output.
                    These frames include a header for synchronization, the values of touch input, and a checksum to confirm correct values.</p>
@@ -60,7 +55,7 @@ pressureBuffer[5] = widthUB;
 `}</pre>
 </div>               
                 </div> {/*close div for introduction-text*/}
-                <img src={SensorSizes} alt="Sensor Sizes" className="intro-image" />
+                <img src={SensorSizes} alt="Sensor Sizes" className="intro-image-square" />
             </div> {/*close div for introduction-top*/}
             <div className="introduction-top">
                 <div className="introduction-text">

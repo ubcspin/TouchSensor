@@ -128,6 +128,18 @@ ul {
     object-fit: contain;
     z-index: 1;
 }
+.intro-image-square {
+    float: right;
+    max-width: 32%;
+    min-width: 20em;
+    max-height: 38%;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    object-fit: contain;
+    z-index: 1;
+}
 .introduction-text {
     min-width: 200px;
     max-width: 480px;
