@@ -65,9 +65,9 @@ pressureBuffer[5] = widthUB;
             <div className="introduction-top">
                 <div className="introduction-text">
                     <h3>BACK-END USING NODE.JS AND SOCKET.IO</h3>
-                    <p>User input from the Touch Sensor is received from the Arduino to a custom back-end which interprets the data. After the data is interpreted, the back-end sends this information to the front-end to be rendered.</p>
+                    <p>User input from the Touch Sensor is received from the Arduino to a custom back-end which interprets the Arduino data. After the data is interpreted, the back-end sends this information to the front-end to be rendered.</p>
                     <p>Every byte of Arduino data received is bit shifted in order to be read properly.</p>
-                    <p>The unique string of values that indicates the start of each frame of data, the two bytes that represent the size of the Touch Sensor, the entire length of values from every point of the Touch Sensor, and the timestamp are all interpreted here.</p>
+                    <p>The unique string of values which indicate the start of each frame of data, the bytes that represent the size of the Touch Sensor, the entire length of values from every point of the Touch Sensor, and the timestamp are all interpreted here.</p>
                     <p>That information is packaged into a JavaScript Object which is sent to the front-end.</p>
                 </div>
                 <div className="intro-code">
@@ -90,7 +90,7 @@ function sendObject(msg) {
                 <div className="introduction-text">
                     <h3>REACT AND D3 FRONT-END</h3>
                     <p>Responsive rendering of touch input is achieved by using React and D3. React ensures a responsive web-based visualization interface by only updating the DOM elements that have changed.</p>
-                    <p>Webpack is used to bundle all the node modules used. This allows us to hot module swap our application, which refreshes our application when changes are made, for quicker development. Babel allows the visualization to use ES5 and ES6 JavaScript features, and compiles our JavaScript for browsers to understand.</p>
+                    <p>Webpack is used to bundle all the node modules in our project. This allows us to hot module swap our application, which refreshes our application when changes are made, for quicker development. Babel allows the visualization to use ES5 and ES6 JavaScript features, and compiles our JavaScript for browsers to understand.</p>
                     <p>The real-time visualization of touch sensor input is displayed on screen using D3. D3 uses SVG, HTML and CSS technologies to render two-dimensional visualizations.</p>
                 </div>
                 <img src={Demo} alt="Visualization Demo" className="intro-image" />
