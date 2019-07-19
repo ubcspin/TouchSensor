@@ -13,7 +13,7 @@ h2 {
 h3 {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 17px;
     text-align: left;
     
 }
@@ -28,6 +28,10 @@ h3 {
     font-weight: 400;
     font-size: 18px;
     text-align: left;
+}
+a:link, a:visited {
+    text-decoration: none;
+    color: lightgray;
 }
 p {
     font-family: 'Lato', sans-serif;
@@ -54,7 +58,8 @@ ul {
     justify-content: center;
     min-height: 400px;
     align-items: center;
-    padding-top: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     overflow: auto;
     z-index: -99;
     
@@ -114,7 +119,7 @@ ul {
 .intro-image {
     float: right;
     max-width: 38%;
-    min-width: 25em;
+    min-width: 20em;
     max-height: 38%;
     margin-top: 2%;
     margin-left: 5%;
@@ -137,7 +142,7 @@ ul {
     
 }
 
-pre {
+.small-code {
     background: #f4f4f4;
     border: 1px solid #ddd;
     border-left: 3px solid #f36d33;
@@ -148,6 +153,7 @@ pre {
     line-height: 1.6;
     margin-bottom: 1.6em;
     max-width: 200px;
+    min-width: 100px;
     overflow: auto;
     padding: 1em 1.5em;
     display: block;
@@ -156,6 +162,36 @@ pre {
     margin-right: 5em;
 }
 
+.large-code {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 10px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    min-width: 25em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: normal;
+    text-align: left;
+}
+.intro-code {
+    float: right;
+    max-width: 38%;
+    min-width: 38%;
+    max-height: 38%;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    object-fit: contain;
+    z-index: 1;
+}
 .code-text {
     display: flex;
     flex-direction: row;
@@ -165,5 +201,23 @@ pre {
         
         max-width: none;
         
+    }
+    
+    .intro-code {
+        
+        max-width: none;
+        min-width: none;
+        
+        
+        margin-left: none;
+        margin-right: none;
+       
+    }
+}
+@media only screen and (max-width: 585px) {
+    .code-text {
+      display: flex;
+      flex-direction: column;
+      padding-left: 2em;
     }
 }
