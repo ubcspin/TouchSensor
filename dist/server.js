@@ -40,7 +40,7 @@ var msg = {
 	checksum: 0
 }
 /////////////////////END OF INITIALIZATION/////////////////////////////////
-
+function callArduino() {
 // Parser used to read data from Arduino, one byte at a time
 parser.on('data', function(buff){
 	
@@ -96,7 +96,8 @@ parser.on('data', function(buff){
 			
 	}
 		
-}); 
+});
+} 
 
 // Check if buff is 0xff (255)
 function check(element) {
@@ -187,14 +188,26 @@ function isChecksumEqual(lastByteOfSum, checksum) {
 
 // Sends the array of values (msg) to React
 function sendObject(msg) {
-//	console.log(sensorArray);
+	console.log("emit msg");
 	io.emit('Sensor', msg);
 }
 
 
 io.on('connection', function(socket){
   console.log('socket io server connected');
+  socket.on("demo", function(){
+	  callArduino()
+	});
+  socket.on('disconnect', function() {
+	io.emit("errorCustom", "There is no server connected");
+  })
 });
+
+io.on('error', function(){
+	console.log("no socket io connection");
+})
+
+
 
 http.listen(8080, function(){
   console.log('listening on *:8080');

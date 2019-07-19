@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 
 const socket = io('http://localhost:8080');
 
-class Circular extends Component {
+class D3Matrix extends Component {
   constructor(props) {
     super(props);
     
@@ -20,13 +20,15 @@ class Circular extends Component {
   }
 
   componentDidMount() {
-    
+    //const socket = io('http://localhost:8080');
     socket.on("Sensor", function(msg) {
    
     this.setValuesToState(msg); //Set the state in setValuesToState with values from msg
     
     }.bind(this));
-    
+    socket.on("errorCustom", function(text){
+      console.log(text);
+    }.bind(this));
     this.createGraph();
     
   }
@@ -129,4 +131,4 @@ class Circular extends Component {
   };
 }
 
-export default Circular;
+export default D3Matrix;
