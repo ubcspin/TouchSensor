@@ -20,6 +20,13 @@ app.use('/js', express.static(__dirname + '/js'));
 const port = new SerialPort('/dev/cu.usbmodem14301', {
   baudRate: 512000
 });
+var emitBoolean = false;
+port.on("error", function(err) {
+	
+	console.log("backend error msg: " + err.message);
+	emitBoolean = true;
+	
+});
 
 // This parses the data and logs it, reading 1 byte at a time
 const parser = port.pipe(new ByteLength({length: 1}));
@@ -39,11 +46,12 @@ var msg = {
 	valuesArray: [],
 	checksum: 0
 }
+
 /////////////////////END OF INITIALIZATION/////////////////////////////////
-function callArduino() {
+
 // Parser used to read data from Arduino, one byte at a time
 parser.on('data', function(buff){
-	
+	//Stub for switching between different demo modes
 	// Push first element into sensorArray
 	var buffAsNumber = buff.readUInt8();
 	sensorArray.push(buffAsNumber);
@@ -97,7 +105,6 @@ parser.on('data', function(buff){
 	}
 		
 });
-} 
 
 // Check if buff is 0xff (255)
 function check(element) {
@@ -186,27 +193,23 @@ function isChecksumEqual(lastByteOfSum, checksum) {
 }
 ///////////////////////////////////////////////////////////////////////////
 
+
 // Sends the array of values (msg) to React
 function sendObject(msg) {
-	console.log("emit msg");
+	//console.log("being to send msg");
 	io.emit('Sensor', msg);
 }
 
 
-io.on('connection', function(socket){
+
+io.on('connect', function(socket){
   console.log('socket io server connected');
-  socket.on("demo", function(){
-	  callArduino()
-	});
-  socket.on('disconnect', function() {
-	io.emit("errorCustom", "There is no server connected");
-  })
+
+	if (emitBoolean) {
+		socket.emit("noArduino", "No Arduino connection");
+	}
+
 });
-
-io.on('error', function(){
-	console.log("no socket io connection");
-})
-
 
 
 http.listen(8080, function(){

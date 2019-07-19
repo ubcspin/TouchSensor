@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
 const pressure = require("pressure");
-//import io from 'socket.io-client';
-//const socket = io('http://localhost:8080');
 
 class PressureMatrix extends Component {
   constructor(props) {
@@ -138,11 +136,17 @@ class PressureMatrix extends Component {
   
   render() {
       return (
-        <div>
-          <svg ref={node => this.node = node}
+        <div className="display-wrap">
+         <div className="visualization">
+           <svg ref={node => this.node = node}
            width="400" height="400"> 
             
-          </svg>
+           </svg>
+         </div>
+         <div className="demo-text">
+          <h3>Place your mouse over the visualization</h3>
+            <p class="topic">This simulates how the visualization would behave if a user interacts with a physical Touch Sensor</p>
+          </div>
         </div>
       )
   };

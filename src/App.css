@@ -6,18 +6,59 @@
 	font-weight: bold;
 }
 
+
+.display-wrap {
+	display: flex;
+	flex-direction: row;
+	overflow-y: scroll;
+}
+
+#buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
 button {
+	flex-basis: 15%;
 	background-color: rgb(14, 131, 248);
 	border: none;
 	border-radius: 4px;
+	margin-right: 20px;
+	margin-left: 40px;
 	color: white;
 	text-align: center;
 	padding: 10px 24px;
 	font-size: 16px;
 	display: inline-block;
+	cursor: pointer;
 }
 
 button:hover {
 	background-color: rgb(62, 155, 248);
 }
 
+button:disabled {
+	background-color: rgb(119, 111, 110);
+	opacity: 0.2;
+	cursor: not-allowed;
+}
+
+#introduction-text {
+	width: 49%;
+	padding: 40px;
+}
+
+#introduction-images {
+	width: 49%;
+}
+
+.visualization {
+	width: 40%;
+	padding: 5%;
+}
+
+.demo-text {
+	width: 49%;
+	padding: 3%;
+	text-align: left;
+}

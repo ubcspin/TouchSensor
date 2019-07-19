@@ -16,9 +16,7 @@ class Matrix extends Component {
 }
 
   componentDidMount() {
-    //const socket = io('http://localhost:8080');
     socket.on('Sensor', function(msg) {
-      //console.log(msg);
       
       const matrixValues = this.state.matrixValues;
      
@@ -96,15 +94,22 @@ class Matrix extends Component {
   }
 
     render() {
-      
+      let row = this.state.matrixLength;
+      let column = this.state.matrixWidth;
       return (
-         <div className="test">
-          <h2>Displaying Matrix Demo</h2>
+        <div className="display-wrap">
+         <div className="visualization">
+       
             {this.createDivision()}
 
           </div>
-          )
-      }
+          <div className="demo-text">
+            <h3>A visualization of your {row} x {column} Touch Sensor with pressure values</h3>
+          
+          </div>
+        </div>
+      )
+    }
 }
 
 export default Matrix;

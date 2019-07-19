@@ -11,32 +11,47 @@ class D3Matrix extends Component {
     this.state = {
       rowLength: 0,
       columnLength: 0,
+      hasConnection: false,
       values: [  
       ]
     };
     this.createGraph = this.createGraph.bind(this);
     this.setValuesToState = this.setValuesToState.bind(this);
-    //this.colorMap = this.colorMap.bind(this);
+    this.checkConnection = this.checkConnection.bind(this);
   }
 
   componentDidMount() {
-    //const socket = io('http://localhost:8080');
+    
+    
+
     socket.on("Sensor", function(msg) {
-   
-    this.setValuesToState(msg); //Set the state in setValuesToState with values from msg
+      this.setValuesToState(msg); //Set the state in setValuesToState with values from msg
     
     }.bind(this));
-    socket.on("errorCustom", function(text){
-      console.log(text);
-    }.bind(this));
-    this.createGraph();
     
+    //console.log("socketIO connection status: " + socket.connected);
+    //this.checkConnection();
+    if(socket.connected) {
+      console.log("socket is connected. creating graph");
+      this.checkConnection(true);
+      this.createGraph();
+    }
+    if(!socket.connected) {
+      this.checkConnection(false);
+    }
   }
 
   //Used to update state as back-end sends data
   componentDidUpdate() {
     this.createGraph();
     
+  }
+
+  //Check the socket.io connection
+  checkConnection(status) {
+    let hasConnection = this.state.hasConnection;
+    hasConnection = status;
+    this.setState({ hasConnection: hasConnection });
   }
 
   //Set the state varialbes here
@@ -123,10 +138,22 @@ class D3Matrix extends Component {
   }
 
   render() {
+    let row = this.state.rowLength;
+    let column = this.state.columnLength;
       return (
-        <svg ref={node => this.node = node}
-          width="500" height="500">  
-        </svg>
+        <div className="display-wrap">
+          <div className="visualization">
+          
+          <svg ref={node => this.node = node}
+             width="400" height="400" >  
+          </svg>
+         </div>
+        <div className="demo-text">
+          <h3>A visualization of your {row} x {column} Touch Sensor</h3>
+        
+        </div>
+    </div>
+        
       )
   };
 }
