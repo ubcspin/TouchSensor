@@ -29,8 +29,6 @@ class D3Matrix extends Component {
     
     }.bind(this));
     
-    //console.log("socketIO connection status: " + socket.connected);
-    //this.checkConnection();
     if(socket.connected) {
       console.log("socket is connected. creating graph");
       this.checkConnection(true);
@@ -130,7 +128,7 @@ class D3Matrix extends Component {
         return (currentY * h);
       })
       .style(
-        //Call a function here, colorMap, that returns a string of rgb 
+        //Call the function colorMap that returns a string of rgb 
         "fill", function(d) {
           return colorMap(d.data);
       });

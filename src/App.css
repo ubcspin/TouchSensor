@@ -58,9 +58,11 @@ button:disabled {
 	height: 180px;
 	z-index: 0;
 }
+
 #entire-introduction {
 	background: #202327;
 }
+
 #introduction-text {
 	width: 49%;
 	padding: 40px;
@@ -82,6 +84,7 @@ button:disabled {
 	text-align: center;
 	color: lightgray;
 }
+
 .demo-text {
 	width: 49%;
 	padding: 3%;
@@ -108,6 +111,7 @@ button:disabled {
 		z-index: 1;
 	}
 }
+
 @media only screen and (max-width: 897px) {
 	html {
 		width: 100%;

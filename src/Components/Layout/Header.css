@@ -8,6 +8,7 @@
     padding-top: 15px;
     
 }
+
 .title-container {
     position: relative;
     min-width: 50em;
@@ -50,8 +51,6 @@
     z-index: 1;
 }
 
-
-
 @media only screen and (max-width: 897px) {
     .title-header #github-button {
         height: 20px;
@@ -68,6 +67,7 @@
         white-space: nowrap;
         z-index: 1;
     }
+
     .title-header #project-title {
 
         margin: 0 0 0 0;
@@ -84,6 +84,7 @@
         z-index: 1;
     }
 }
+
 @media only screen and (max-width: 370px) {
     .title-header #project-title {
 
