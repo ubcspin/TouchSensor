@@ -33,7 +33,7 @@ class Matrix extends Component {
     }.bind(this));
   }
 
-  //TODO: make the number of iteration in loop dynamic
+ 
   handleCellState = (values) => {
     let temp = values;
     let tempResult = [];
@@ -74,9 +74,6 @@ class Matrix extends Component {
     var myCells = this.state.cells;
     const num_rows = this.state.matrixWidth; 
     
-    // TODO: rewrite to be more functional
-    // e.g., remove v these accumulators and replace with "pure" maps, etc.
-    // do something, add to array, repeat --> map over something, return product
     let matrix = [];
 
     for (var i = 0; i < num_rows; i++) {

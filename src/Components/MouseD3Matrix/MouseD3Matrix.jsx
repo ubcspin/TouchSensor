@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
 
-class PressureMatrix extends Component {
+class MouseD3Matrix extends Component {
   constructor(props) {
     super(props);
     
@@ -43,9 +43,9 @@ class PressureMatrix extends Component {
       completeArray.push({ index:i, data:tempData[i] });
     }
     
-    this.setState({ rowLength: rowLength });
-    this.setState({ columnLength: columnLength});
-    this.setState({ values: completeArray });
+    this.setState({ rowLength: rowLength,
+                    columnLength: columnLength,
+                    values: completeArray });
   }
   
 
@@ -144,11 +144,11 @@ class PressureMatrix extends Component {
          </div>
          <div className="demo-text">
           <h3>Place your mouse over the visualization</h3>
-            <p class="topic">This simulates how the visualization would behave if a user interacts with a physical Touch Sensor</p>
+            <p className="topic">This simulates how the visualization would behave if a user interacts with a physical Touch Sensor</p>
           </div>
         </div>
       )
   };
 }
 
-export default PressureMatrix;
+export default MouseD3Matrix;

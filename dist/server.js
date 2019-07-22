@@ -22,11 +22,11 @@ app.use('/videos', express.static(__dirname + '/videos'));
 const port = new SerialPort('/dev/cu.usbmodem14301', {
   baudRate: 512000
 });
-var emitBoolean = false;
+var arduinoNotConnected = false;
 port.on("error", function(err) {
 	
 	console.log("backend error msg: " + err.message);
-	emitBoolean = true;
+	arduinoNotConnected = true;
 	
 });
 
@@ -207,7 +207,7 @@ function sendObject(msg) {
 io.on('connect', function(socket){
   console.log('socket io server connected');
 
-	if (emitBoolean) {
+	if (arduinoNotConnected) {
 		socket.emit("noArduino", "No Arduino connection");
 	}
 

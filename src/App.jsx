@@ -5,19 +5,15 @@ import D3Matrix from './components/D3Matrix/D3Matrix.jsx';
 import MouseD3Matrix from './components/MouseD3Matrix/MouseD3Matrix.jsx';
 import IntroText from './components/Layout/IntroText.jsx';
 import Button from './components/Layout/Button.jsx';
-
 import './App.css';
 import io from 'socket.io-client';
-
-const socket = io('http://localhost:8080', {
-  "reconnect": false
-});
+const socket = io('http://localhost:8080');
 
 class App extends Component {
  
     state = {
       disableButton: false,
-      showHome: true,
+      showHomePage: true,
       showMatrix: false,
       showD3Matrix: false,
       showMouseD3Matrix: false
@@ -40,27 +36,26 @@ class App extends Component {
   handleButtonClick(event) {
     
     const id = event.target.id;
-    console.log(id);
     if(id == "htmlcss") {
-      this.setState({ showMatrix: true });
-      this.setState({ showD3Matrix: false });
-      this.setState({ showMouseD3Matrix: false });
-      this.setState({ showHome: false });
+      this.setState({ showMatrix: true,
+                      showD3Matrix: false,
+                      showMouseD3Matrix: false,
+                      showHomePage: false });
     } else if (id == "d3demo") {
-      this.setState({ showD3Matrix: true });
-      this.setState({ showMatrix: false });
-      this.setState({ showMouseD3Matrix: false });
-      this.setState({ showHome: false });
+      this.setState({ showD3Matrix: true,
+                      showMatrix: false,
+                      showMouseD3Matrix: false,
+                      showHomePage: false });
     } else if (id == "mouse") {
-      this.setState({ showMouseD3Matrix: true });
-      this.setState({ showMatrix: false });
-      this.setState({ showD3Matrix: false });
-      this.setState({ showHome: false });
+      this.setState({ showMouseD3Matrix: true,
+                      showMatrix: false,
+                      showD3Matrix: false,
+                      showHomePage: false });
     } else if (id == "project-title") {
-      this.setState({ showHome: true });
-      this.setState({ showMatrix: false });
-      this.setState({ showD3Matrix: false });
-      this.setState({ showMouseD3Matrix: false });
+      this.setState({ showHomePage: true,
+                      showMatrix: false,
+                      showD3Matrix: false,
+                      showMouseD3Matrix: false });
     } 
   }
   
@@ -69,7 +64,7 @@ class App extends Component {
         const showMatrix = this.state.showMatrix;
         const showD3Matrix = this.state.showD3Matrix;
         const showMouseD3Matrix = this.state.showMouseD3Matrix;
-        const showHome = this.state.showHome;
+        const showHomePage = this.state.showHomePage;
         let display;
         
         if (showMatrix) {
@@ -82,7 +77,7 @@ class App extends Component {
           display = <MouseD3Matrix />
           
         }
-        else if (showHome) {
+        else if (showHomePage) {
           display = <IntroText />;
          
         }

@@ -17,28 +17,33 @@ h3 {
     text-align: left;
     
 }
+
 .topic {
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
     font-size: 23px;
     text-align: left;
 }
+
 .instruction {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 18px;
     text-align: left;
 }
+
 a:link, a:visited {
     text-decoration: none;
     color: lightgray;
 }
+
 p {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     font-size: 18px;
     text-align: left;
 }
+
 .intro-text {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -50,7 +55,6 @@ ul {
     list-style-type: disc;
 }
 
-
 .introduction-top {
     display: flex;
     flex-direction: row;
@@ -58,8 +62,8 @@ ul {
     justify-content: center;
     min-height: 400px;
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
     overflow: auto;
     z-index: -99;
     
@@ -72,6 +76,7 @@ ul {
     position: relative;
    
 }
+
 .video-text {
     
     max-width: 410px;
@@ -88,26 +93,7 @@ ul {
     top: 5em;
     
 }
-@media only screen and (max-width: 897px) {
-    .video-text {
-     max-width: none;
-     min-width: none;
-     min-height: none;
 
-     position: static;
-     color: lightgray;
-     z-index: 2;
-    
-     background: none;
-     box-shadow: none;
-  
-
-     margin-right: 5%;
-     margin-left: 5%;
-    
-    
-    }
-}
 #intro-video {
     min-width: 100%;
     
@@ -128,6 +114,7 @@ ul {
     object-fit: contain;
     z-index: 1;
 }
+
 .intro-image-square {
     float: right;
     max-width: 32%;
@@ -140,6 +127,7 @@ ul {
     object-fit: contain;
     z-index: 1;
 }
+
 .introduction-text {
     min-width: 200px;
     max-width: 480px;
@@ -157,15 +145,15 @@ ul {
 .small-code {
     background: #f4f4f4;
     border: 1px solid #ddd;
-    border-left: 3px solid #f36d33;
+    border-left: 3px solid #f5510b;
     color: #666;
     page-break-inside: avoid;
     font-family: monospace;
     font-size: 10px;
     line-height: 1.6;
     margin-bottom: 1.6em;
-    max-width: 200px;
-    min-width: 100px;
+    max-width: 20em;
+    min-width: 17em;
     overflow: auto;
     padding: 1em 1.5em;
     display: block;
@@ -175,15 +163,15 @@ ul {
 }
 
 .large-code {
-    background: #f4f4f4;
-    border: 1px solid #ddd;
-    border-left: 3px solid #f36d33;
-    color: #666;
+    background: rgb(240, 240, 240);
+    border: 1px solid rgb(218, 218, 218);
+    border-left: 5px solid #f5510b;
+    color: rgb(82, 82, 82);
     page-break-inside: avoid;
     font-family: monospace;
     font-size: 10px;
     line-height: 1.6;
-    margin-bottom: 1.6em;
+    margin-bottom: 3.5em;
     min-width: 25em;
     max-width: 100%;
     overflow: auto;
@@ -192,6 +180,7 @@ ul {
     word-wrap: normal;
     text-align: left;
 }
+
 .intro-code {
     float: right;
     max-width: 38%;
@@ -204,28 +193,46 @@ ul {
     object-fit: contain;
     z-index: 1;
 }
+
 .code-text {
     display: flex;
     flex-direction: row;
 }
+
 @media only screen and (max-width: 1218px) {
     .introduction-text {
-        
         max-width: none;
-        
     }
     
     .intro-code {
-        
         max-width: none;
         min-width: none;
         
-        
         margin-left: none;
         margin-right: none;
-       
     }
 }
+
+@media only screen and (max-width: 897px) {
+    .video-text {
+     max-width: none;
+     min-width: none;
+     min-height: none;
+
+     position: static;
+     color: lightgray;
+     z-index: 2;
+    
+     background: none;
+     box-shadow: none;
+
+     margin-right: 5%;
+     margin-left: 5%;
+    
+    
+    }
+}
+
 @media only screen and (max-width: 585px) {
     .code-text {
       display: flex;

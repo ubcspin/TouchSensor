@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './IntroText.css'
 import SensorSizes from '../../images/sensorScales.jpg';
-import HardwareImage from '../../images/HardwareImage.jpg';
 import TouchSensorVideo from '../../videos/TouchSensorVideo.mp4';
 import Demo from '../../images/Demo.jpg';
 
@@ -85,7 +84,7 @@ function sendObject(msg) {
                 <div className="introduction-text">
                     <h3>REACT AND D3 FRONT-END</h3>
                     <p>Responsive rendering of touch input is achieved by using React and D3. React ensures a responsive web-based visualization interface by only updating the DOM elements that have changed.</p>
-                    <p>Webpack is used to bundle all the node modules in our project. This allows us to hot module swap our application, which refreshes when changes are made for quicker development. Babel allows the visualization to use ES5 and ES6 JavaScript features, and compiles our JavaScript for browsers to understand.</p>
+                    <p>Webpack is used to bundle all the node modules in our project. This allows us to hot module swap our application, which refreshes when changes are made for quicker development. Babel allows the visualization to use ES6 JavaScript features, and compiles our JavaScript for browsers to understand.</p>
                     <p>The real-time visualization of sensor input is displayed on screen using D3. D3 uses SVG, HTML and CSS technologies to render two-dimensional visualizations.</p>
                 </div>
                 <img src={Demo} alt="Visualization Demo" className="intro-image" />
