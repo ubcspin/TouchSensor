@@ -1,31 +1,235 @@
+body {
+    margin: 0;
+}
+
 h2 {
     font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    font-size: 23px;
+    font-weight: 100;
+    font-size: 28px;
     text-align: left;
     
 }
 
 h3 {
     font-family: 'Roboto', sans-serif;
-    
-    font-size: 20px;
-    text-align: left;
-    padding-top: 2%;
-}
-.topic {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 17px;
     text-align: left;
+    
 }
-
+.topic {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-size: 23px;
+    text-align: left;
+}
+.instruction {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    text-align: left;
+}
+a:link, a:visited {
+    text-decoration: none;
+    color: lightgray;
+}
 p {
     font-family: 'Lato', sans-serif;
-    font-size: 15px;
+    font-weight: 300;
+    font-size: 18px;
+    text-align: left;
+}
+.intro-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
     text-align: left;
 }
 
 ul {
     list-style-type: disc;
+}
+
+
+.introduction-top {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 400px;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    overflow: auto;
+    z-index: -99;
+    
+}
+
+.video-top {
+    min-width: 100%;
+    max-width: 100%;
+    height: fit-content;
+    position: relative;
+   
+}
+.video-text {
+    
+    max-width: 410px;
+    min-width: 35%;
+    min-height: 25%;
+   
+    position: absolute;
+    color: lightgray;
+    z-index: 2;
+    
+    padding: 1em;
+    background: #000000a4;
+    box-shadow: 50px 0px 50px #00000082;
+    top: 5em;
+    
+}
+@media only screen and (max-width: 897px) {
+    .video-text {
+     max-width: none;
+     min-width: none;
+     min-height: none;
+
+     position: static;
+     color: lightgray;
+     z-index: 2;
+    
+     background: none;
+     box-shadow: none;
+  
+
+     margin-right: 5%;
+     margin-left: 5%;
+    
+    
+    }
+}
+#intro-video {
+    min-width: 100%;
+    
+    max-width: 100%;
+    
+    z-index: 1;
+}
+
+.intro-image {
+    float: right;
+    max-width: 38%;
+    min-width: 20em;
+    max-height: 38%;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    object-fit: contain;
+    z-index: 1;
+}
+.intro-image-square {
+    float: right;
+    max-width: 32%;
+    min-width: 20em;
+    max-height: 38%;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    object-fit: contain;
+    z-index: 1;
+}
+.introduction-text {
+    min-width: 200px;
+    max-width: 480px;
+    float: left;
+    left: 0;
+    color: lightgray;
+    z-index: 2;
+    padding: 1em;
+    margin-left: 5%;
+    margin-right: 5%;
+    
+    
+}
+
+.small-code {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 10px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 200px;
+    min-width: 100px;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: normal;
+    text-align: left;
+    margin-right: 5em;
+}
+
+.large-code {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 10px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    min-width: 25em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: normal;
+    text-align: left;
+}
+.intro-code {
+    float: right;
+    max-width: 38%;
+    min-width: 38%;
+    max-height: 38%;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    object-fit: contain;
+    z-index: 1;
+}
+.code-text {
+    display: flex;
+    flex-direction: row;
+}
+@media only screen and (max-width: 1218px) {
+    .introduction-text {
+        
+        max-width: none;
+        
+    }
+    
+    .intro-code {
+        
+        max-width: none;
+        min-width: none;
+        
+        
+        margin-left: none;
+        margin-right: none;
+       
+    }
+}
+@media only screen and (max-width: 585px) {
+    .code-text {
+      display: flex;
+      flex-direction: column;
+      padding-left: 2em;
+    }
 }

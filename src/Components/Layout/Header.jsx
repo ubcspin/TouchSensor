@@ -9,12 +9,12 @@ class Header extends Component {
     render() {
         return (
             <div className="title-header">
-                <h1 id="project-title" onClick={this.props.onClick}>Touch Sensor Visualization</h1>
-                <a href="https://github.com/ubcspin/TouchSensor">
-                    <button id="github-button">
+                <div className="title-container">
+                    <h1 id="project-title" onClick={this.props.onClick}>Touch Sensor Visualization</h1>
+                    <a href="https://github.com/ubcspin/TouchSensor" id="github-button">
                         View on Github
-                    </button>
-                </a>
+                    </a>
+                </div>
             </div>
         )
     }

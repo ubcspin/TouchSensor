@@ -15,6 +15,8 @@ console.log(__dirname);
 console.log(__dirname + '/js');
 
 app.use('/js', express.static(__dirname + '/js'));
+app.use('/images', express.static(__dirname + '/images'));
+app.use('/videos', express.static(__dirname + '/videos'));
 
 // This is initializing the serial port
 const port = new SerialPort('/dev/cu.usbmodem14301', {

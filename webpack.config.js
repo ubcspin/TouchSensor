@@ -23,6 +23,19 @@ module.exports = {
         ]
       },
       {
+        test: /\.(png|jpg)$/,
+        use: [{
+        loader: 'file-loader',
+        options: {
+          name: 'images/[name].[ext]',
+        }
+      }]
+      },
+      {
+        test: /\.mp4$/,
+        use: 'file-loader?name=videos/[name].[ext]'
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: "babel-loader"
