@@ -112,6 +112,15 @@ button:disabled {
 	}
 }
 
+@media only screen and (max-width: 415px) {
+	.demo-text {
+		width: 80%;
+		padding: 3%;
+		margin-left: 1em;
+		text-align: left;
+	}
+}
+
 @media only screen and (max-width: 370px) {
     button {
 		flex-basis: 15%;
