@@ -75,6 +75,13 @@ button:disabled {
 	padding: 5%;
 }
 
+.sensor-text {
+	font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+	font-size: 14px;
+	text-align: center;
+	color: lightgray;
+}
 .demo-text {
 	width: 49%;
 	padding: 3%;
@@ -88,9 +95,9 @@ button:disabled {
 		border: none;
 		border-radius: 4px;
 		
-		margin-right: 2px;
+		margin-right: 0.33em;
 		
-		margin-left: 2px;
+		margin-left: 0.33em;
 		color: white;
 		text-align: center;
 		padding: 10px 15px 10px 15px;
@@ -127,10 +134,8 @@ button:disabled {
 		background-color: rgb(14, 131, 248);
 		border: none;
 		border-radius: 4px;
-		
-		margin-right: 2px;
-		
-		margin-left: 2px;
+		margin-right: 0.25em;
+		margin-left: 0.25em;
 		color: white;
 		text-align: center;
 		padding: 0.75em 1.5em 0.75em 1.5em;
