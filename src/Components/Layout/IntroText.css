@@ -58,8 +58,8 @@ ul {
     justify-content: center;
     min-height: 400px;
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
     overflow: auto;
     z-index: -99;
     
@@ -164,8 +164,8 @@ ul {
     font-size: 10px;
     line-height: 1.6;
     margin-bottom: 1.6em;
-    max-width: 200px;
-    min-width: 100px;
+    max-width: 20em;
+    min-width: 17em;
     overflow: auto;
     padding: 1em 1.5em;
     display: block;
