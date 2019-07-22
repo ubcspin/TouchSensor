@@ -36,7 +36,6 @@ class App extends Component {
   handleButtonClick(event) {
     
     const id = event.target.id;
-    console.log(id);
     if(id == "htmlcss") {
       this.setState({ showMatrix: true,
                       showD3Matrix: false,
