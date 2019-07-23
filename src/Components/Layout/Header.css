@@ -85,7 +85,7 @@
     }
 }
 
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 415px) {
     .title-header #project-title {
 
         margin: 0 0 0 0;
@@ -94,7 +94,7 @@
         
         font-family: 'Roboto', sans-serif;
         font-weight: 800;
-        font-size: 20px;
+        font-size: 22px;
         text-align: center;
         line-height: 80px;
         overflow: hidden;
